@@ -27,7 +27,7 @@ public class Car extends BaseEntity {
     private CarFuels fuel;
 
     @ManyToOne
-    private User user;
+    private UserEntity userEntity;
 
     public Car() {
 

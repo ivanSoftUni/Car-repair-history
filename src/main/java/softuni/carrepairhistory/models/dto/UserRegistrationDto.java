@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
-public class RegisterDTO {
+public class UserRegistrationDto {
 
     @Size(min = 3, max = 20)
     @NotNull
@@ -23,7 +23,7 @@ public class RegisterDTO {
     @NotNull
     private String confirmPassword;
 
-    public RegisterDTO() {
+    public UserRegistrationDto() {
     }
 
 

@@ -1,4 +1,6 @@
 
+
+
   .showcase h1 {
     font-size: 2.5rem;
   }
@@ -16,7 +18,7 @@
     text-align: center;
     margin: auto;
   }
-}
+
 
 @media (max-width: 500px) {
   .top-container {
