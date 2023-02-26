@@ -21,8 +21,8 @@ public class CarService extends BaseEntity {
     @OneToMany
     private List<Car> cars;
 
-    @ManyToMany
-    private Set<User> users;
+//    @ManyToMany
+//    private Set<User> users;
 
 
     public CarService() {
@@ -61,11 +61,11 @@ public class CarService extends BaseEntity {
         this.cars = cars;
     }
 
-    public Set<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(Set<User> users) {
-        this.users = users;
-    }
+//    public Set<User> getUsers() {
+//        return users;
+//    }
+//
+//    public void setUsers(Set<User> users) {
+//        this.users = users;
+//    }
 }

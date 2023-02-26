@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/commons::head"></head>
+<body>
+<header th:replace="fragments/commons::nav"></header>
+<main>
+    <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Add Car</span></h1>
+    <hr class="hr-3 w-25 bg-white"/>
+
+    <form class="mx-auto w-25 bg-blur rounded" method="post" action="/car/add" >
+
+        <div class="form-group">
+            <div class="label-holder textCol d-flex justify-content-center">
+                <label for="brand" class="h4 mb-2 text-white">Brand</label>
+            </div>
+            <input type="text" class="form-control"
+                   id="brand" name="brand"/>
+            <small class="invalid-feedback text-danger">Brand error message</small>
+        </div>
+
+        <div class="form-group">
+            <div class="label-holder text-white textCol d-flex justify-content-center">
+                <label for="model" class="h4 mb-2">Model</label>
+            </div>
+            <input type="text" class="form-control"
+                   id="model" name="model"/>
+            <small class="invalid-feedback text-danger">Model error message</small>
+        </div>
+
+        <div class="form-group">
+            <div class="label-holder text-white textCol d-flex justify-content-center">
+                <label for="year" class="h4 mb-2">Year</label>
+            </div>
+            <input class="form-control" id="year" type="number"
+                   name="year"/>
+            <small class="invalid-feedback text-danger">Year error message</small>
+        </div>
+
+        <div class="form-group">
+            <div class="label-holder text-white textCol d-flex justify-content-center">
+                <label for="horsePower" class="h4 mb-2">Horse Power</label>
+            </div>
+            <input type="number" class="form-control" id="horsePower" name="horsePower"
+                   />
+            <small
+                   class="invalid-feedback text-danger">Horse Power error message</small>
+        </div>
+
+        <div class="form-group">
+            <div class="label-holder text-white textCol d-flex justify-content-center">
+                <label for="engine" class="h4 mb-2">Engine</label>
+            </div>
+            <input type="text" class="form-control" id="engine" name="engine"
+            />
+            <small
+                    class="invalid-feedback text-danger">Engine error message</small>
+        </div>
+
+        <div class="form-group">
+            <div class="text-white label-holder d-flex justify-content-center">
+                <label for="fuel" class="h4 mb-2">Fuel</label>
+            </div>
+            <select class="browser-default custom-select" id="fuel" name="fuel">
+                <option value="">Select Fuel</option>
+                <option value="DIESEL">Дизел</option>
+                <option value="GASOLINE">Бензин</option>
+                <option value="LPG">Газ</option>
+                <option value="METHANE">Метан</option>
+            </select>
+
+            <small class="invalid-feedback text-danger">Fuel error message</small>
+        </div>
+
+        <div class="button-holder d-flex justify-content-center">
+            <button type="submit" class="btn btn-warning  mb-3" value="Add Car">Add Car</button>
+        </div>
+
+    </form>
+</main>
+
+</body>
+</html>
