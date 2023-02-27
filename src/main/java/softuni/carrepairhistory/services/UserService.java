@@ -1,11 +1,10 @@
 package softuni.carrepairhistory.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import softuni.carrepairhistory.models.dto.UserRegistrationDto;
 import softuni.carrepairhistory.models.entities.UserEntity;
-import softuni.carrepairhistory.models.entities.UserRoleEntity;
-import softuni.carrepairhistory.models.enums.UserRoleEnum;
 import softuni.carrepairhistory.repositories.UserRepository;
 
 import java.util.List;
@@ -15,10 +14,12 @@ import java.util.Optional;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
     public boolean toRegister(UserRegistrationDto userRegistrationDto) {
 
@@ -36,7 +37,7 @@ public class UserService {
         UserEntity userEntity = new UserEntity();
         userEntity.setUsername(userRegistrationDto.getUsername());
         userEntity.setEmail(userRegistrationDto.getEmail());
-        userEntity.setPassword(userRegistrationDto.getPassword());
+        userEntity.setPassword(passwordEncoder.encode(userRegistrationDto.getPassword()));
         userEntity.setUserRoles(List.of());
         System.out.println();
         this.userRepository.saveAndFlush(userEntity);

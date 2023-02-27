@@ -4,48 +4,35 @@
 <head th:replace="fragments/commons::head"></head>
 <body>
 <header th:replace="fragments/commons::nav"></header>
-<main class=" p-md-5 align-content-center bg-blur my-register-div">
-    <h1 class="  border-bottom mb-5">Login</h1>
-    <div class="d-flex justify-content-center">
+<main>
 
-        <div class="row g-3 align-items-center">
+    <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Login</span></h1>
+    <hr class="hr-3 w-25 bg-white"/>
+    <form class="mx-auto w-25 bg-blur"
+          th:action="@{/users/login}" th:method="post" >
 
-            <form
-                    action="/users/login"
-                    method="get">
-                <div>
-                    <div class="col-auto">
-                        <label for="inputUsername" class="col-form-label ">Username</label>
-                    </div>
-                    <div class="col-auto">
-                        <input type="text"
-                               name="username"
-                               th:value="username"
-                               required minlength="4" maxlength="20"
-                               id="inputUsername"
-                               class="form-control"
-                               aria-describedby="usernameHelpInline">
-                    </div>
-                </div>
-                <div>
-                    <div class="col-auto">
-                        <label for="inputPassword" class="col-form-label ">Password</label>
-                    </div>
-                    <div class="col-auto">
-                        <input type="password"
-                               name="password"
-                               required minlength="4" maxlength="20"
-                               id="inputPassword" class="form-control"
-                               aria-describedby="passwordHelpInline">
-                    </div>
-                </div>
-                <div class="d-flex justify-content-center mt-2">
-                    <button class="btn btn-primary btn-block w-50" type="submit">Login</button>
-                </div>
-            </form>
+        <div class="form-group">
+            <div class="label-holder text-white d-flex justify-content-center">
+                <label for="username" class="h3 mb-2">Username</label>
+            </div>
+            <input
+                   type="text" class="form-control" id="username" name="username"/>
         </div>
 
-    </div>
+        <div class="form-group">
+            <div class="label-holder text-white d-flex justify-content-center">
+                <label for="password" class="h3 mb-2">Password</label>
+            </div>
+            <input type="password" class="form-control" id="password" name="password"/>
+        </div>
+
+        <div th:if="${validCredentials == false}" class="text-danger">Incorrect username or password!</div>
+
+        <div class="button-holder d-flex justify-content-center">
+            <button type="submit" class="btn btn-warning  mb-3">Login</button>
+        </div>
+
+    </form>
 </main>
 <footer th:replace="fragments/commons::footer"></footer>
 </body>
