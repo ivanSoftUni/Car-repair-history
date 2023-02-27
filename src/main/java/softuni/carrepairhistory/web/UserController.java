@@ -2,6 +2,7 @@ package softuni.carrepairhistory.web;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,8 +35,8 @@ public class UserController {
 
     @PostMapping("/users/register")
     public String registerUser(@Valid UserRegistrationDto userRegistrationDto,
-                           BindingResult bindingResult,
-                           RedirectAttributes redirectAttributes) {
+                               BindingResult bindingResult,
+                               RedirectAttributes redirectAttributes) {
 
         if (bindingResult.hasErrors() || !this.userService.toRegister(userRegistrationDto)) {
 
@@ -54,5 +55,16 @@ public class UserController {
     public String login() {
 
         return "login";
+    }
+
+    @PostMapping("/users/login-error")
+    public String onFailedLogin(
+            @ModelAttribute(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY) String username,
+            RedirectAttributes redirectAttributes) {
+
+        redirectAttributes.addFlashAttribute(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY, username);
+        redirectAttributes.addFlashAttribute("bad_credentials", true);
+
+        return "redirect:/users/login";
     }
 }

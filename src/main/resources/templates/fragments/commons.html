@@ -1,38 +1,49 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Reseller App</title>
+    <title>Car Repair History</title>
     <link rel="stylesheet" href="/css/reset-css.css"/>
     <link rel="stylesheet" href="/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/css/style.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css"
           integrity="sha512-H8Wjk+X+wvTqbPQ/WxHxT8WwT+jzvmdfK2cL+OckZJhHzXgYjKmJp+1HhplWwGg0v6r5U3qxE/0/5/ZpXNCuVg=="
-          crossorigin="anonymous" referrerpolicy="no-referrer" />
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
 </head>
 <body>
 <header>
     <nav class="navbar navbar-expand-lg bg-nav rounded">
         <a class="nav-link text-primary active h5 text-stroke" href="/">Car History App</a>
-        <a  class="nav-link text-primary active h5 text-stroke" href="/car/add">Add Car</a>
-        <a  class="nav-link text-primary active h5 text-stroke" href="/">Add Repair</a>
+        <a class="nav-link text-primary active h5 text-stroke" href="/car/add">Add Car</a>
+        <a class="nav-link text-primary active h5 text-stroke" href="/">Add Repair</a>
 
         <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
             <ul class="navbar-nav row">
-                <li  class="nav-item col-md-4">
+                <li class="nav-item col-md-4">
                     <a class="nav-link text-primary active h5 text-stroke" href="/users/login">Login</a>
                 </li>
 
-                <li  class="nav-item col-md-4">
+                <li class="nav-item col-md-4">
                     <a class="nav-link text-primary active h5 text-stroke" href="/users/register">Register</a>
                 </li>
 
-                <li  class="nav-item col-md-4">
-                    <a class="nav-link text-primary active h5 text-stroke" href="/users/logout">Logout</a>
-                </li>
             </ul>
+            <div class="form-inline my-2 my-lg-0 px-3">
+                <div class="text-white"> Welcome,
+                    <th:block sec:authentication="name"></th:block>
+                    !
+                </div>
+                <form th:method="post"
+                      th:action="@{/users/logout}">
+                    <input class="btn btn-link nav-link" type="submit" value="Logout">
+                    <!--                        <li class="nav-item col-md-4">-->
+                    <!--                            <a class="nav-link text-primary active h5 text-stroke" href="/users/logout">Logout</a>-->
+                    <!--                        </li>-->
+                </form>
+            </div>
         </div>
     </nav>
 </header>

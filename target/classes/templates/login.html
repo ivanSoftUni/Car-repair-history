@@ -1,5 +1,6 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="fragments/commons::head"></head>
 <body>
 <header th:replace="fragments/commons::nav"></header>
@@ -19,6 +20,7 @@
                     <div class="col-auto">
                         <input type="text"
                                name="username"
+                               th:value="username"
                                required minlength="4" maxlength="20"
                                id="inputUsername"
                                class="form-control"
