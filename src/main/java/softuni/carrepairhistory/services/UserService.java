@@ -1,6 +1,11 @@
 package softuni.carrepairhistory.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import softuni.carrepairhistory.models.dto.UserRegistrationDto;
@@ -15,12 +20,15 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final UserDetailsService userDetailsService;
 
     @Autowired
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, UserDetailsService userDetailsService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.userDetailsService = userDetailsService;
     }
+
     public boolean toRegister(UserRegistrationDto userRegistrationDto) {
 
         if (!userRegistrationDto.getPassword().equals(userRegistrationDto.getConfirmPassword())) {
@@ -39,9 +47,24 @@ public class UserService {
         userEntity.setEmail(userRegistrationDto.getEmail());
         userEntity.setPassword(passwordEncoder.encode(userRegistrationDto.getPassword()));
         userEntity.setUserRoles(List.of());
-        System.out.println();
+
         this.userRepository.saveAndFlush(userEntity);
+
         return true;
+    }
+
+    public void login(String username) {
+
+        UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+
+        Authentication auth = new UsernamePasswordAuthenticationToken(
+                userDetails,
+                userDetails.getPassword(),
+                userDetails.getAuthorities());
+
+        SecurityContextHolder.
+                getContext().
+                setAuthentication(auth);
     }
 
 }

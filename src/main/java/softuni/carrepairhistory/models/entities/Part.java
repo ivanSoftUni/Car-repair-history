@@ -4,6 +4,7 @@ package softuni.carrepairhistory.models.entities;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -14,28 +15,15 @@ public class Part extends BaseEntity {
     @Column(nullable = false)
     private String name;
 
-    @Column
-    private String manufacturer;
-
-    @Column
-    private BigDecimal price;
-
     @OneToMany
     private List<Car> cars;
     @ManyToOne
     private PartsCategory categoryName;
 
     public Part() {
-
+        this.cars = new ArrayList<>();
     }
 
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
 
     public List<Car> getCars() {
         return cars;
@@ -53,13 +41,6 @@ public class Part extends BaseEntity {
         this.name = name;
     }
 
-    public String getManufacturer() {
-        return manufacturer;
-    }
-
-    public void setManufacturer(String manufacturer) {
-        this.manufacturer = manufacturer;
-    }
 
     public PartsCategory getCategoryName() {
         return categoryName;

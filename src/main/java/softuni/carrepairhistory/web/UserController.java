@@ -67,4 +67,10 @@ public class UserController {
 
         return "redirect:/users/login";
     }
+
+
+    @GetMapping("/home")
+    public String getHome() {
+        return "home";
+    }
 }
