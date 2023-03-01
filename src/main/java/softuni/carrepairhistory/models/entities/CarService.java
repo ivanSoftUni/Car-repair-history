@@ -12,8 +12,10 @@ public class CarService extends BaseEntity {
     @Column(nullable = false)
     private String name;
 
-    @Column
+    @Column(nullable = false)
     private String city;
+    @Column
+    private String address;
 
     @Column(name = "phone_number")
     private String phoneNumber;
@@ -61,7 +63,14 @@ public class CarService extends BaseEntity {
         this.cars = cars;
     }
 
-//    public Set<User> getUsers() {
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+    //    public Set<User> getUsers() {
 //        return users;
 //    }
 //

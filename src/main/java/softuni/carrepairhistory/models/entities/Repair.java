@@ -26,14 +26,11 @@ public class Repair extends BaseEntity {
     @OneToMany
     private List<Part> parts;
 
-//    @ManyToOne
-//    private User user;
+
 
     @ManyToOne
     private Car car;
 
-//    @ManyToMany
-//    private List<CarService> carServices;
 
     public Repair(){
 
@@ -79,13 +76,6 @@ public class Repair extends BaseEntity {
         this.parts = parts;
     }
 
-//    public User getUser() {
-//        return user;
-//    }
-//
-//    public void setUser(User user) {
-//        this.user = user;
-//    }
 
     public Car getCar() {
         return car;
@@ -95,11 +85,5 @@ public class Repair extends BaseEntity {
         this.car = car;
     }
 
-//    public List<CarService> getCarServices() {
-//        return carServices;
-//    }
-//
-//    public void setCarServices(List<CarService> carServices) {
-//        this.carServices = carServices;
-//    }
+
 }

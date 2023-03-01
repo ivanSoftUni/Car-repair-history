@@ -1,10 +1,7 @@
 package softuni.carrepairhistory.models.entities;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.util.Collections;
@@ -25,6 +22,8 @@ public class Part extends BaseEntity {
 
     @OneToMany
     private List<Car> cars;
+    @ManyToOne
+    private PartsCategory categoryName;
 
     public Part() {
 
@@ -60,5 +59,13 @@ public class Part extends BaseEntity {
 
     public void setManufacturer(String manufacturer) {
         this.manufacturer = manufacturer;
+    }
+
+    public PartsCategory getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(PartsCategory categoryName) {
+        this.categoryName = categoryName;
     }
 }
