@@ -23,9 +23,6 @@ public class CarService extends BaseEntity {
     @OneToMany
     private List<Car> cars;
 
-//    @ManyToMany
-//    private Set<User> users;
-
 
     public CarService() {
 

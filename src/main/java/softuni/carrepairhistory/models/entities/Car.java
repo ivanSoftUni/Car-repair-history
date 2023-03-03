@@ -20,17 +20,40 @@ public class Car extends BaseEntity {
     private int horsePower;
 
     @Column
-    private int engine;
+    private String engine;
 
     @Column
     @Enumerated(EnumType.STRING)
     private CarFuels fuel;
+
+    @Column(name = "register_number")
+    private String registerNumber;
 
     @ManyToOne
     private UserEntity userEntity;
 
     public Car() {
 
+    }
+
+    public void setEngine(String engine) {
+        this.engine = engine;
+    }
+
+    public String getRegisterNumber() {
+        return registerNumber;
+    }
+
+    public void setRegisterNumber(String registerNumber) {
+        this.registerNumber = registerNumber;
+    }
+
+    public UserEntity getUserEntity() {
+        return userEntity;
+    }
+
+    public void setUserEntity(UserEntity userEntity) {
+        this.userEntity = userEntity;
     }
 
     public String getBrand() {
@@ -63,14 +86,6 @@ public class Car extends BaseEntity {
 
     public void setHorsePower(int horsePower) {
         this.horsePower = horsePower;
-    }
-
-    public int getEngine() {
-        return engine;
-    }
-
-    public void setEngine(int engine) {
-        this.engine = engine;
     }
 
     public CarFuels getFuel() {
