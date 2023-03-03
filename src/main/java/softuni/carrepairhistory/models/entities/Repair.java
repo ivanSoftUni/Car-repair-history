@@ -28,13 +28,10 @@ public class Repair extends BaseEntity {
 
 
 
-    @ManyToOne
-    private Car car;
-
-
     public Repair(){
 
     }
+
 
     public String getDescription() {
         return description;
@@ -76,14 +73,6 @@ public class Repair extends BaseEntity {
         this.parts = parts;
     }
 
-
-    public Car getCar() {
-        return car;
-    }
-
-    public void setCar(Car car) {
-        this.car = car;
-    }
 
 
 }
