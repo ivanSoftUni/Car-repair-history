@@ -1,7 +1,6 @@
 package softuni.carrepairhistory.models.entities;
 
 import jakarta.persistence.*;
-import softuni.carrepairhistory.models.enums.UserRoleEnum;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +22,7 @@ public class UserEntity extends BaseEntity {
     private List<Car> cars = new ArrayList<>();
 
     @ManyToMany(fetch = FetchType.EAGER)
-    private List<UserRoleEntity> userRoles = new ArrayList<>();
+    private List<RoleEntity> userRoles = new ArrayList<>();
 
     public UserEntity() {
 
@@ -62,11 +61,17 @@ public class UserEntity extends BaseEntity {
         this.cars = cars;
     }
 
-    public List<UserRoleEntity> getUserRoles() {
+    public List<RoleEntity> getUserRoles() {
         return userRoles;
     }
 
-    public void setUserRoles(List<UserRoleEntity> userRoles) {
-        this.userRoles = userRoles;
+    public UserEntity setUserRoles(List<RoleEntity> roles) {
+        this.userRoles = roles;
+        return this;
+    }
+
+    public UserEntity addRole(RoleEntity role) {
+        this.userRoles.add(role);
+        return this;
     }
 }

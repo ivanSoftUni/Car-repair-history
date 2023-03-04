@@ -9,6 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import softuni.carrepairhistory.models.enums.UserRoleEnum;
 import softuni.carrepairhistory.repositories.UserRepository;
 import softuni.carrepairhistory.services.ApplicationUserDetailsService;
 
@@ -27,6 +28,7 @@ public class SecurityConfig {
                 authorizeHttpRequests().
                 requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll().
                 requestMatchers("/", "/users/login", "/users/register", "/users/login-error").permitAll().
+               requestMatchers("/pages/admin").hasRole(UserRoleEnum.ADMIN.name()).
                 anyRequest().
                 authenticated().
                 and().

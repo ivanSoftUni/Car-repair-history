@@ -4,7 +4,7 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="fragments/commons::head"></head>
 <body>
-<header th:replace="fragments/commons::nav"></header>
+<header th:replace="fragments/navbar::navbar"></header>
 <main>
     <div class="container bg-blur rounded mt-5">
         <h1>Welcome to Car Repair History</h1>
@@ -14,7 +14,7 @@
             Car Repair History е място където можете да водите сервизна история на Вашият автомобил.</p>
         <hr class="my-3 bg-white w-75"/>
 
-        <h3>
+        <h3 sec:authorize="isAnonymous()">
             <a class="text-primary" href="/users/login">Login</a>
             if you have an account or
             <a class="text-primary" href="/users/register">Register</a>

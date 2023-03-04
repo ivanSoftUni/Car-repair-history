@@ -10,6 +10,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import softuni.carrepairhistory.models.dto.UserRegistrationDto;
 import softuni.carrepairhistory.models.entities.UserEntity;
+import softuni.carrepairhistory.models.entities.RoleEntity;
+import softuni.carrepairhistory.models.enums.UserRoleEnum;
 import softuni.carrepairhistory.repositories.UserRepository;
 
 import java.util.List;
@@ -41,14 +43,18 @@ public class UserService {
         if (byUsername.isPresent() || byEmail.isPresent()) {
             return false;
         }
+        RoleEntity roleEntity = new RoleEntity();
+        roleEntity.setRole(UserRoleEnum.USER);
+
 
         UserEntity userEntity = new UserEntity();
         userEntity.setUsername(userRegistrationDto.getUsername());
         userEntity.setEmail(userRegistrationDto.getEmail());
         userEntity.setPassword(passwordEncoder.encode(userRegistrationDto.getPassword()));
-        userEntity.setUserRoles(List.of());
 
-        this.userRepository.saveAndFlush(userEntity);
+        userEntity.setUserRoles(List.of());
+        userEntity.addRole(roleEntity);
+        this.userRepository.save(userEntity);
 
         return true;
     }
