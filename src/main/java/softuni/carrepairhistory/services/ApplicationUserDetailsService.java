@@ -10,6 +10,8 @@ import softuni.carrepairhistory.models.entities.RoleEntity;
 import softuni.carrepairhistory.models.user.AppUserDetails;
 import softuni.carrepairhistory.repositories.UserRepository;
 
+import java.util.List;
+
 public class ApplicationUserDetailsService implements UserDetailsService {
 
     private final UserRepository userRepository;
@@ -30,10 +32,15 @@ public class ApplicationUserDetailsService implements UserDetailsService {
                 userEntity.getUsername(),
                 userEntity.getEmail(),
                 userEntity.getPassword(),
-                userEntity.
-                        getUserRoles().stream().map(this::mapRole).toList());
+                extractAuthorities(userEntity));
     }
 
+    private List<GrantedAuthority> extractAuthorities(UserEntity userEntity) {
+        return userEntity.getUserRoles()
+                .stream()
+                .map(this::mapRole)
+                .toList();
+    }
 
     private GrantedAuthority mapRole(RoleEntity userRole) {
         return new SimpleGrantedAuthority("ROLE_" + userRole.getRole().name());

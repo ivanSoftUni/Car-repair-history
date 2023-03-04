@@ -22,10 +22,7 @@ public class UserRolesInit implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        if (roleRepository.count() == 0) {
-            this.roleService.initAdminRole();
-            this.roleService.initUserRole();
-        }
+
 
     }
 }

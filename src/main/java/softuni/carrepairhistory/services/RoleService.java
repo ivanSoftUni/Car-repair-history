@@ -20,7 +20,7 @@ public class RoleService {
         RoleEntity roleEntity = new RoleEntity();
         roleEntity.setRole(UserRoleEnum.ADMIN);
 
-        this.roleRepository.saveAndFlush(roleEntity);
+        this.roleRepository.save(roleEntity);
     }
 
     public void initUserRole() {
