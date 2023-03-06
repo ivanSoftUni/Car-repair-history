@@ -23,27 +23,28 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-
         http.
                 authorizeHttpRequests().
                 requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll().
-                requestMatchers("/", "/users/login", "/users/register", "/users/login-error").permitAll().
-               requestMatchers("/pages/admin").hasRole(UserRoleEnum.ADMIN.name()).
+                requestMatchers("/", "/users/login", "/users/register").permitAll().
+                requestMatchers("/pages/admin").hasRole(UserRoleEnum.ADMIN.name()).
                 anyRequest().
                 authenticated().
                 and().
+
                 formLogin().
                 loginPage("/users/login").
-                usernameParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY).
-                passwordParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_PASSWORD_KEY).
-                defaultSuccessUrl("/home").
+                usernameParameter("username").
+                passwordParameter("password").
+                defaultSuccessUrl("/users/home").
                 failureForwardUrl("/users/login-error").
                 and().
                 logout().
                 logoutUrl("/users/logout").
                 logoutSuccessUrl("/").
+                deleteCookies("JSESSIONID").
                 invalidateHttpSession(true).
-                deleteCookies("JSESSIONID");
+                clearAuthentication(true);
 
         return http.build();
     }

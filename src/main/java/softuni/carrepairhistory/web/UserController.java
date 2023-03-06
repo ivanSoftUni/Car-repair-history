@@ -69,8 +69,9 @@ public class UserController {
     }
 
 
-    @GetMapping("/home")
+    @GetMapping("/users/home")
     public String getHome() {
+
         return "home";
     }
 }
