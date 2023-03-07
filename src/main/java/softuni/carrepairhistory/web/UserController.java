@@ -74,4 +74,10 @@ public class UserController {
 
         return "home";
     }
+
+    @GetMapping("/")
+    public String index() {
+
+        return "index";
+    }
 }
