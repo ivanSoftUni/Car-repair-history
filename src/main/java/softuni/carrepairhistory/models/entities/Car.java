@@ -3,6 +3,7 @@ package softuni.carrepairhistory.models.entities;
 import jakarta.persistence.*;
 import softuni.carrepairhistory.models.enums.CarFuels;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -34,7 +35,7 @@ public class Car extends BaseEntity {
     @ManyToOne
     private UserEntity userEntity;
     @OneToMany
-    private List<Repair> repairList;
+    private List<Repair> repairList = new ArrayList<>();
 
     public Car() {
 

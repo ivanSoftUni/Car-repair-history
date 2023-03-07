@@ -11,8 +11,16 @@ public class Part extends BaseEntity {
     @Column(nullable = false)
     private String name;
 
-    @ManyToOne
-    private PartsCategory categoryName;
+    @ManyToOne(targetEntity = PartsCategory.class)
+    private PartsCategory partsCategory;
+
+    public PartsCategory getPartsCategory() {
+        return partsCategory;
+    }
+
+    public void setPartsCategory(PartsCategory partsCategory) {
+        this.partsCategory = partsCategory;
+    }
 
     public Part() {
 
@@ -27,12 +35,4 @@ public class Part extends BaseEntity {
         this.name = name;
     }
 
-
-    public PartsCategory getCategoryName() {
-        return categoryName;
-    }
-
-    public void setCategoryName(PartsCategory categoryName) {
-        this.categoryName = categoryName;
-    }
 }

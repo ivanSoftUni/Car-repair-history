@@ -9,14 +9,18 @@
     <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Add Car</span></h1>
     <hr class="hr-3 w-25 bg-white"/>
 
-    <form class="mx-auto w-25 bg-blur rounded" method="post" action="/car/add" >
+    <form class="mx-auto w-25 bg-blur rounded" th:method="post"
+          th:action="@{/car/add}"
+          th:object="${createCarDto}">
 
         <div class="form-group">
             <div class="label-holder textCol d-flex justify-content-center">
                 <label for="brand" class="h4 mb-2 text-white">Brand</label>
             </div>
             <input type="text" class="form-control"
-                   id="brand" name="brand"/>
+                   id="brand" name="brand"
+                   th:field="*{brand}"
+           th:errorclass="is-invalid" />
             <small class="invalid-feedback text-danger">Brand error message</small>
         </div>
 
@@ -25,7 +29,9 @@
                 <label for="model" class="h4 mb-2">Model</label>
             </div>
             <input type="text" class="form-control"
-                   id="model" name="model"/>
+                   id="model" name="model"
+                   th:field="*{model}"
+                   th:errorclass="is-invalid"/>
             <small class="invalid-feedback text-danger">Model error message</small>
         </div>
 
@@ -34,7 +40,9 @@
                 <label for="year" class="h4 mb-2">Year</label>
             </div>
             <input class="form-control" id="year" type="number"
-                   name="year"/>
+                   name="year"
+                   th:field="*{madeYear}"
+                   th:errorclass="is-invalid"/>
             <small class="invalid-feedback text-danger">Year error message</small>
         </div>
 
@@ -43,9 +51,10 @@
                 <label for="horsePower" class="h4 mb-2">Horse Power</label>
             </div>
             <input type="number" class="form-control" id="horsePower" name="horsePower"
-                   />
+                   th:field="*{horsePower}"
+                   th:errorclass="is-invalid"/>
             <small
-                   class="invalid-feedback text-danger">Horse Power error message</small>
+                    class="invalid-feedback text-danger">Horse Power error message</small>
         </div>
 
         <div class="form-group">
@@ -53,16 +62,29 @@
                 <label for="engine" class="h4 mb-2">Engine</label>
             </div>
             <input type="text" class="form-control" id="engine" name="engine"
-            />
+                   th:field="*{engine}"
+                   th:errorclass="is-invalid"/>
             <small
                     class="invalid-feedback text-danger">Engine error message</small>
+        </div>
+        <div class="form-group">
+            <div class="label-holder text-white textCol d-flex justify-content-center">
+                <label for="registerNumber" class="h4 mb-2">Register Number</label>
+            </div>
+            <input type="text" class="form-control" id="registerNumber" name="registerNumber"
+                   th:field="*{registerNumber}"
+                   th:errorclass="is-invalid" />
+            <small
+                    class="invalid-feedback text-danger">Register Number error message</small>
         </div>
 
         <div class="form-group">
             <div class="text-white label-holder d-flex justify-content-center">
                 <label for="fuel" class="h4 mb-2">Fuel</label>
             </div>
-            <select class="browser-default custom-select" id="fuel" name="fuel">
+            <select class="browser-default custom-select" id="fuel" name="fuel"
+                    th:field="*{fuel}"
+                    th:errorclass="is-invalid">
                 <option value="">Select Fuel</option>
                 <option value="DIESEL">Дизел</option>
                 <option value="GASOLINE">Бензин</option>

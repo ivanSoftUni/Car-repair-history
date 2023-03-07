@@ -28,7 +28,7 @@ public class PartsService {
 
         Optional<PartsCategory> partsCategory = this.partsCategoryRepository.findByName("Ходова част");
 
-        part.setCategoryName(partsCategory.get());
+        part.setPartsCategory(partsCategory.get());
 
         this.partRepository.save(part);
     }

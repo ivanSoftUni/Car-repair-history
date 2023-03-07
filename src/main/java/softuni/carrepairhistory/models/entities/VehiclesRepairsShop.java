@@ -2,12 +2,12 @@ package softuni.carrepairhistory.models.entities;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Entity
-@Table(name = "car_service")
-public class CarService extends BaseEntity {
+@Table(name = "vehicle_repair_shop")
+public class VehiclesRepairsShop extends BaseEntity {
 
     @Column(nullable = false)
     private String name;
@@ -21,10 +21,10 @@ public class CarService extends BaseEntity {
     private String phoneNumber;
 
     @OneToMany
-    private List<Car> cars;
+    private List<Car> cars = new ArrayList<>();
 
 
-    public CarService() {
+    public VehiclesRepairsShop() {
 
     }
 
@@ -67,11 +67,5 @@ public class CarService extends BaseEntity {
     public void setAddress(String address) {
         this.address = address;
     }
-    //    public Set<User> getUsers() {
-//        return users;
-//    }
-//
-//    public void setUsers(Set<User> users) {
-//        this.users = users;
-//    }
+
 }
