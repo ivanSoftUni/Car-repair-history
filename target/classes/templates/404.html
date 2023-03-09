@@ -1,22 +1,27 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">>
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-<head th:replace="fragments/commons::head"></head>
+<head th:include="~{fragments/head}">
+    <title>Repair History</title>
+
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
 <body>
 <header th:replace="fragments/navbar::navbar"></header>
 
-<div class="container-fluid">
-    <h1 class="text-center text-white mt-5">
-        404
-    </h1>
-    <h2 class="text-center text-white mt-5"> Page Not Found</h2>
+<div class="container ">
+    <div class="row-cols-md-3 align-content-sm-around">
+        <h1 class="text-center text-black mt-5">
+            404
+        </h1>
+        <h2 class="text-center text-black mt-5"> Page Not Found</h2>
+    </div>
 </div>
 
-<div>
-    <footer th:replace="fragments/commons::footer"></footer>
-</div>
-
+<footer th:replace="~{/fragments/footer}"></footer>
+<!--<script src="/main/resources/static/js/bootstrap.min.js"></script>-->
 </body>
 </html>

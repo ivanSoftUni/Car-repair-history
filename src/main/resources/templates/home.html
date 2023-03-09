@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/commons::head"></head>
+<head th:include="fragments/head"></head>
 <body>
 <header th:replace="fragments/navbar::navbar"></header>
 <main>
@@ -22,7 +22,7 @@
 
             <div class="col-6 mt-1 mb-1">
                 <h3 class="mySticky bg-gray text-dark  mb-0 mt-2">All Repairs</h3>
-                <h6 class="mySticky bg-gray text-dark  mb-0 mt-0" ></h6>
+<!--                <h6 class="mySticky bg-gray text-dark  mb-0 mt-0" ></h6>-->
                 <div class="bg-dark rounded m-auto" style="height: 68.5vh; overflow: auto">
                     <th:block>
                         <br>
@@ -55,6 +55,6 @@
         </div>
     </div>
 </main>
-<footer th:replace="fragments/commons::footer"></footer>
+<footer th:replace="fragments/footer"></footer>
 </body>
 </html>

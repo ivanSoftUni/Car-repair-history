@@ -2,7 +2,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="fragments/commons::head"></head>
+<head th:include="fragments/head"></head>
 <body>
 <header th:replace="fragments/navbar::navbar"></header>
 <main>
@@ -22,6 +22,6 @@
         </h3>
     </div>
 </main>
-<footer th:replace="fragments/commons::footer"></footer>
+<footer th:replace="fragments/footer"></footer>
 </body>
 </html>
