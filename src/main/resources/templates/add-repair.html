@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Repair</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+<div class="container-fluid mx-auto w-50">
+    <form class="mx-auto w-50 bg-blur rounded">
+        <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Add Repair</span></h1>
+
+        <br>
+        <div class="mb-3">
+            <label for="car" class="form-label">Select Car</label>
+            <select class="form-select" id="car">
+                <option value="car1">Car 1</option>
+                <option value="car2">Car 2</option>
+                <option value="car3">Car 3</option>
+                <option value="car4">Car 4</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <input type="text" class="form-control" id="description" placeholder="Въведете описание">
+        </div>
+        <div class="mb-3">
+            <label for="date" class="form-label">Date</label>
+            <input type="date" class="form-control" id="date">
+        </div>
+        <div class="mb-3">
+            <label for="comment" class="form-label">Comment</label>
+            <textarea class="form-control" id="comment" rows="3"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="price" class="form-label">Price</label>
+            <input type="number" class="form-control" id="price" placeholder="Въведете цена">
+        </div>
+        <div class="mb-3">
+            <label for="category" class="form-label">Parts Category</label>
+            <select class="form-select" id="category" multiple>
+                <option value="part1">Част 1</option>
+                <option value="part2">Част 2</option>
+                <option value="part3">Част 3</option>
+                <option value="part4">Част 4</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="parts" class="form-label">Parts</label>
+            <select class="form-select" id="parts" multiple disabled>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">Submit</button>
+        <button type="button" class="btn btn-secondary mt-3" id="add-parts">Add Parts</button>
+    </form>
+
+</div>
+<script src="/js/bootstrap.min.js"></script>
+</body>
+</html>
