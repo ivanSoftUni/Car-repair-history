@@ -30,6 +30,12 @@ public class CarService {
         Optional<UserEntity> user = this.userRepository.findByUsername(principal.getName());
         CarFuels carFuels = CarFuels.valueOf(createCarDto.getFuel());
 
+        Optional<Car> optionalCar = this.carRepository.findByRegisterNumber(createCarDto.getRegisterNumber());
+
+        if (optionalCar.isPresent()) {
+            return false;
+        }
+
         Car car = new Car();
         car.setBrand(createCarDto.getBrand());
         car.setModel(createCarDto.getModel());
@@ -39,7 +45,7 @@ public class CarService {
         car.setRegisterNumber(createCarDto.getRegisterNumber());
         car.setUserEntity(user.get());
         car.setFuel(carFuels);
-        System.out.println();
+
         this.carRepository.save(car);
 
 

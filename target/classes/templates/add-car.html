@@ -9,97 +9,84 @@
     <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Add Car</span></h1>
     <hr class="hr-3 w-25 bg-white"/>
 
-    <form class="mx-auto w-25 bg-blur rounded" th:method="post"
-          th:action="@{/car/add}"
-          th:object="${createCarDto}">
+    <div class="container-fluid mx-auto w-50">
+        <form class="bg-blur rounded" th:method="post"
+              th:action="@{/car/add}"
+              th:object="${createCarDto}">
 
-        <div class="form-group">
-            <div class="label-holder textCol d-flex justify-content-center">
-                <label for="brand" class="h4 mb-2 text-white">Brand</label>
+            <div class="row justify-content-center">
+                <div class="col-md-6 mb-3">
+                    <label for="brand" class="h4 mb-2 text-white">Brand</label>
+                    <input type="text" class="form-control"
+                           id="brand" name="brand"
+                           th:field="*{brand}"
+                           th:errorclass="is-invalid"/>
+                    <small class="invalid-feedback text-danger">Brand error message</small>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label for="model" class="h4 mb-2">Model</label>
+                    <input type="text" class="form-control"
+                           id="model" name="model"
+                           th:field="*{model}"
+                           th:errorclass="is-invalid"/>
+                    <small class="invalid-feedback text-danger">Model error message</small>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label for="year" class="h4 mb-2">Year</label>
+                    <input class="form-control" id="year" type="number"
+                           name="year"
+                           th:field="*{madeYear}"
+                           th:errorclass="is-invalid"/>
+                    <small class="invalid-feedback text-danger">Year error message</small>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label for="horsePower" class="h4 mb-2">Horse Power</label>
+                    <input type="number" class="form-control" id="horsePower" name="horsePower"
+                           th:field="*{horsePower}"
+                           th:errorclass="is-invalid"/>
+                    <small
+                            class="invalid-feedback text-danger">Horse Power error message</small>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label for="engine" class="h4 mb-2">Engine</label>
+                    <input type="text" class="form-control" id="engine" name="engine"
+                           th:field="*{engine}"
+                           th:errorclass="is-invalid"/>
+                    <small class="invalid-feedback text-danger">Engine error message</small>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="registerNumber" class="h4 mb-2">Register Number</label>
+                    <input type="text" class="form-control" id="registerNumber" name="registerNumber"
+                           th:field="*{registerNumber}"
+                           th:errorclass="is-invalid"/>
+                    <small class="invalid-feedback text-danger">Register Number error message</small>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label for="fuel" class="h4 mb-2">Fuel</label>
+                    <select class="browser-default custom-select" id="fuel" name="fuel"
+                            th:field="*{fuel}"
+                            th:errorclass="is-invalid">
+                        <option value="">Select Fuel</option>
+                        <option value="DIESEL">Дизел</option>
+                        <option value="GASOLINE">Бензин</option>
+                        <option value="LPG">Газ</option>
+                        <option value="METHANE">Метан</option>
+                    </select>
+
+                    <small class="invalid-feedback text-danger">Fuel error message</small>
+                </div>
+
+                <div class="button-holder d-flex justify-content-center">
+                    <button type="submit" class="btn btn-warning  mb-3" value="Add Car">Add Car</button>
+                </div>
             </div>
-            <input type="text" class="form-control"
-                   id="brand" name="brand"
-                   th:field="*{brand}"
-           th:errorclass="is-invalid" />
-            <small class="invalid-feedback text-danger">Brand error message</small>
-        </div>
-
-        <div class="form-group">
-            <div class="label-holder text-white textCol d-flex justify-content-center">
-                <label for="model" class="h4 mb-2">Model</label>
-            </div>
-            <input type="text" class="form-control"
-                   id="model" name="model"
-                   th:field="*{model}"
-                   th:errorclass="is-invalid"/>
-            <small class="invalid-feedback text-danger">Model error message</small>
-        </div>
-
-        <div class="form-group">
-            <div class="label-holder text-white textCol d-flex justify-content-center">
-                <label for="year" class="h4 mb-2">Year</label>
-            </div>
-            <input class="form-control" id="year" type="number"
-                   name="year"
-                   th:field="*{madeYear}"
-                   th:errorclass="is-invalid"/>
-            <small class="invalid-feedback text-danger">Year error message</small>
-        </div>
-
-        <div class="form-group">
-            <div class="label-holder text-white textCol d-flex justify-content-center">
-                <label for="horsePower" class="h4 mb-2">Horse Power</label>
-            </div>
-            <input type="number" class="form-control" id="horsePower" name="horsePower"
-                   th:field="*{horsePower}"
-                   th:errorclass="is-invalid"/>
-            <small
-                    class="invalid-feedback text-danger">Horse Power error message</small>
-        </div>
-
-        <div class="form-group">
-            <div class="label-holder text-white textCol d-flex justify-content-center">
-                <label for="engine" class="h4 mb-2">Engine</label>
-            </div>
-            <input type="text" class="form-control" id="engine" name="engine"
-                   th:field="*{engine}"
-                   th:errorclass="is-invalid"/>
-            <small
-                    class="invalid-feedback text-danger">Engine error message</small>
-        </div>
-        <div class="form-group">
-            <div class="label-holder text-white textCol d-flex justify-content-center">
-                <label for="registerNumber" class="h4 mb-2">Register Number</label>
-            </div>
-            <input type="text" class="form-control" id="registerNumber" name="registerNumber"
-                   th:field="*{registerNumber}"
-                   th:errorclass="is-invalid" />
-            <small
-                    class="invalid-feedback text-danger">Register Number error message</small>
-        </div>
-
-        <div class="form-group">
-            <div class="text-white label-holder d-flex justify-content-center">
-                <label for="fuel" class="h4 mb-2">Fuel</label>
-            </div>
-            <select class="browser-default custom-select" id="fuel" name="fuel"
-                    th:field="*{fuel}"
-                    th:errorclass="is-invalid">
-                <option value="">Select Fuel</option>
-                <option value="DIESEL">Дизел</option>
-                <option value="GASOLINE">Бензин</option>
-                <option value="LPG">Газ</option>
-                <option value="METHANE">Метан</option>
-            </select>
-
-            <small class="invalid-feedback text-danger">Fuel error message</small>
-        </div>
-
-        <div class="button-holder d-flex justify-content-center">
-            <button type="submit" class="btn btn-warning  mb-3" value="Add Car">Add Car</button>
-        </div>
-
-    </form>
+        </form>
+    </div>
 </main>
 
 </body>

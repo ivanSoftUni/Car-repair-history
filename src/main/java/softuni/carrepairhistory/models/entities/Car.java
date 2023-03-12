@@ -29,7 +29,7 @@ public class Car extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private CarFuels fuel;
 
-    @Column(name = "register_number")
+    @Column(name = "register_number", nullable = false, unique = true)
     private String registerNumber;
 
     @ManyToOne

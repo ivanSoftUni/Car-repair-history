@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import softuni.carrepairhistory.models.entities.VehiclesRepairsShop;
 
 @Repository
-public interface CarServiceRepository extends JpaRepository<VehiclesRepairsShop, Long> {
+public interface VehiclesRepairsShopRepository extends JpaRepository<VehiclesRepairsShop, Long> {
 }

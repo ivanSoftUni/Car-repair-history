@@ -28,7 +28,7 @@ public class CreateCarDto {
     @NotNull
     private String fuel;
 
-
+@NotNull
     private String registerNumber;
 
 

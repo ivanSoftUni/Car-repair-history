@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "parts_category")
+@Table(name = "category")
 public class PartsCategory extends BaseEntity {
     @Column(nullable = false)
     private String name;
