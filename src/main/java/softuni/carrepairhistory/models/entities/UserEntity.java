@@ -18,7 +18,7 @@ public class UserEntity extends BaseEntity {
     @Column(nullable = false)
     private String password;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private List<Car> cars = new ArrayList<>();
 
     @ManyToMany(fetch = FetchType.EAGER)

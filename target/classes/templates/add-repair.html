@@ -11,7 +11,7 @@
           th:method="post"
           th:action="@{/repair/add}"
           th:object="${addRepairDto}">
-        <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Add Repair</span></h1>
+        <h1 class="text-center mt-2">Add Repair</h1>
 
         <br>
         <div class="mb-3">
@@ -41,10 +41,9 @@
         </div>
         <div class="mb-3">
             <label for="repairShop" class="form-label">Select Repair Shop</label>
-            <select class="form-select" id="repairShop">
-                <option value="repairShop1">RepairShop 1</option>
-                <option value="repairShop2">RepairShop 2</option>
-                <option value="repairShop3">RepairShop 3</option>
+            <select class="form-select" id="repairShop" th:field="*{vehicleShopId}">
+                <option th:each="vehicleShop : ${vehicleShops}" th:value="${vehicleShop.getId()}"
+                th:text="|${vehicleShop.getName()} - ${vehicleShop.getCity()}|"></option>
             </select>
         </div>
         <button type="submit" class="btn btn-primary mt-3">Submit</button>

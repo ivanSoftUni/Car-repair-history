@@ -23,12 +23,11 @@ public class Repair extends BaseEntity {
     @Column(nullable = false)
     private BigDecimal price;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private List<Part> parts;
 
 
-
-    public Repair(){
+    public Repair() {
 
     }
 
@@ -72,7 +71,6 @@ public class Repair extends BaseEntity {
     public void setParts(List<Part> parts) {
         this.parts = parts;
     }
-
 
 
 }

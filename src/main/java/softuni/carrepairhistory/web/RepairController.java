@@ -14,7 +14,9 @@ import softuni.carrepairhistory.models.dto.AddVehicleShop;
 import softuni.carrepairhistory.models.entities.Car;
 import softuni.carrepairhistory.models.entities.PartsCategory;
 import softuni.carrepairhistory.models.entities.UserEntity;
+import softuni.carrepairhistory.models.entities.VehiclesRepairsShop;
 import softuni.carrepairhistory.repositories.*;
+import softuni.carrepairhistory.services.RepairService;
 import softuni.carrepairhistory.services.VehicleShopService;
 
 import java.security.Principal;
@@ -29,9 +31,11 @@ public class RepairController {
     private final VehiclesRepairsShopRepository repairsShopRepository;
     private final UserRepository userRepository;
     private final VehicleShopService vehicleShopService;
+    private final VehiclesRepairsShopRepository vehiclesRepairsShopRepository;
+    private final RepairService repairService;
 
     @Autowired
-    public RepairController(PartsCategoryRepository categoryRepository, RepairRepository repairRepository, CarRepository carRepository, VehiclesRepairsShopRepository repairsShopRepository, UserRepository userRepository, VehicleShopService vehicleShopService) {
+    public RepairController(PartsCategoryRepository categoryRepository, RepairRepository repairRepository, CarRepository carRepository, VehiclesRepairsShopRepository repairsShopRepository, UserRepository userRepository, VehicleShopService vehicleShopService, VehiclesRepairsShopRepository vehiclesRepairsShopRepository, RepairService repairService) {
         this.categoryRepository = categoryRepository;
         this.repairRepository = repairRepository;
         this.carRepository = carRepository;
@@ -39,6 +43,8 @@ public class RepairController {
         this.repairsShopRepository = repairsShopRepository;
         this.userRepository = userRepository;
         this.vehicleShopService = vehicleShopService;
+        this.vehiclesRepairsShopRepository = vehiclesRepairsShopRepository;
+        this.repairService = repairService;
     }
 
     @ModelAttribute("addRepairDto")
@@ -62,6 +68,8 @@ public class RepairController {
         List<Car> cars = this.carRepository.findByUserEntityId(user.getId());
         model.addAttribute("cars", cars);
 
+        List<VehiclesRepairsShop> vehicleShops = this.vehiclesRepairsShopRepository.findAllByUserId(user.getId());
+        model.addAttribute("vehicleShops", vehicleShops);
 
         return "add-repair";
     }
@@ -71,7 +79,7 @@ public class RepairController {
                             BindingResult bindingResult,
                             RedirectAttributes redirectAttributes) {
 
-        if (bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors() || !this.repairService.createRepair(addRepairDto)) {
             redirectAttributes.addFlashAttribute("addRepairDto", addRepairDto);
             redirectAttributes.addFlashAttribute(
                     "org.springframework.validation.BindingResult.addRepairDto", bindingResult);
@@ -102,7 +110,6 @@ public class RepairController {
 
             return "redirect:/vehicle-shop/add";
         }
-
 
         return "redirect:/users/home";
     }

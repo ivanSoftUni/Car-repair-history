@@ -20,7 +20,7 @@ public class VehiclesRepairsShop extends BaseEntity {
     @Column(name = "phone_number")
     private String phoneNumber;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private List<Car> cars = new ArrayList<>();
     @ManyToOne
     private UserEntity user;

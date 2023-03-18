@@ -34,7 +34,7 @@ public class Car extends BaseEntity {
 
     @ManyToOne
     private UserEntity userEntity;
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private List<Repair> repairList = new ArrayList<>();
 
     public Car() {

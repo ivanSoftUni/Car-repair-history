@@ -3,6 +3,7 @@ package softuni.carrepairhistory.models.dto;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Positive;
+import org.springframework.format.annotation.DateTimeFormat;
 import softuni.carrepairhistory.models.entities.Part;
 import softuni.carrepairhistory.models.entities.VehiclesRepairsShop;
 
@@ -17,7 +18,8 @@ public class AddRepairDto {
     private Long carId;
     @NotNull
     private String description;
-    @PastOrPresent
+    @PastOrPresent()
+
     private LocalDate date;
 
     private String comment;
@@ -26,20 +28,21 @@ public class AddRepairDto {
     private BigDecimal price;
 
     @NotNull
-    private VehiclesRepairsShop repairsShop;
-    private List<Part> partList = new ArrayList<>();
+    private Long vehicleShopId;
+
+//    private List<Part> partList = new ArrayList<>();
 
 
     public AddRepairDto() {
 
     }
 
-    public VehiclesRepairsShop getRepairsShop() {
-        return repairsShop;
+    public Long getVehicleShopId() {
+        return vehicleShopId;
     }
 
-    public void setRepairsShop(VehiclesRepairsShop repairsShop) {
-        this.repairsShop = repairsShop;
+    public void setVehicleShopId(Long vehicleShopId) {
+        this.vehicleShopId = vehicleShopId;
     }
 
     public Long getCarId() {
@@ -82,11 +85,11 @@ public class AddRepairDto {
         this.price = price;
     }
 
-    public List<Part> getPartList() {
-        return partList;
-    }
-
-    public void setPartList(List<Part> partList) {
-        this.partList = partList;
-    }
+//    public List<Part> getPartList() {
+//        return partList;
+//    }
+//
+//    public void setPartList(List<Part> partList) {
+//        this.partList = partList;
+//    }
 }
