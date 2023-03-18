@@ -10,13 +10,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import softuni.carrepairhistory.models.dto.AddRepairDto;
+import softuni.carrepairhistory.models.dto.AddVehicleShop;
 import softuni.carrepairhistory.models.entities.Car;
 import softuni.carrepairhistory.models.entities.PartsCategory;
-import softuni.carrepairhistory.repositories.CarRepository;
-import softuni.carrepairhistory.repositories.PartsCategoryRepository;
-import softuni.carrepairhistory.repositories.RepairRepository;
-import softuni.carrepairhistory.repositories.VehiclesRepairsShopRepository;
+import softuni.carrepairhistory.models.entities.UserEntity;
+import softuni.carrepairhistory.repositories.*;
+import softuni.carrepairhistory.services.VehicleShopService;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -26,14 +27,18 @@ public class RepairController {
     private final RepairRepository repairRepository;
     private final CarRepository carRepository;
     private final VehiclesRepairsShopRepository repairsShopRepository;
+    private final UserRepository userRepository;
+    private final VehicleShopService vehicleShopService;
 
     @Autowired
-    public RepairController(PartsCategoryRepository categoryRepository, RepairRepository repairRepository, CarRepository carRepository, VehiclesRepairsShopRepository repairsShopRepository) {
+    public RepairController(PartsCategoryRepository categoryRepository, RepairRepository repairRepository, CarRepository carRepository, VehiclesRepairsShopRepository repairsShopRepository, UserRepository userRepository, VehicleShopService vehicleShopService) {
         this.categoryRepository = categoryRepository;
         this.repairRepository = repairRepository;
         this.carRepository = carRepository;
 
         this.repairsShopRepository = repairsShopRepository;
+        this.userRepository = userRepository;
+        this.vehicleShopService = vehicleShopService;
     }
 
     @ModelAttribute("addRepairDto")
@@ -41,15 +46,21 @@ public class RepairController {
         return new AddRepairDto();
     }
 
+    @ModelAttribute("addVehicleShop")
+    public AddVehicleShop initVehicleShop() {
+        return new AddVehicleShop();
+    }
+
     @GetMapping("/repair/add")
-    public String getRepair(Model model) {
+    public String getRepair(Model model, Principal principal) {
 
         List<PartsCategory> categoryList = this.categoryRepository.findAll();
         model.addAttribute("categoryList", categoryList);
 
-        List<Car> cars = this.carRepository.findAll();
-        model.addAttribute("cars", cars);
+        UserEntity user = this.userRepository.findByUsername(principal.getName()).get();
 
+        List<Car> cars = this.carRepository.findByUserEntityId(user.getId());
+        model.addAttribute("cars", cars);
 
 
         return "add-repair";
@@ -65,9 +76,34 @@ public class RepairController {
             redirectAttributes.addFlashAttribute(
                     "org.springframework.validation.BindingResult.addRepairDto", bindingResult);
 
+
             return "redirect:/repair/add";
         }
 
-        return "redirect:/home";
+        return "redirect:/users/home";
+    }
+
+    @GetMapping("/vehicle-shop/add")
+    public String vehicleShop() {
+
+        return "add-vehicle-shop";
+    }
+
+    @PostMapping("/vehicle-shop/add")
+    public String addVehicleShop(@Valid AddVehicleShop addVehicleShop,
+                                 BindingResult bindingResult,
+                                 RedirectAttributes redirectAttributes,
+                                 Principal principal) {
+
+        if (bindingResult.hasErrors() || !this.vehicleShopService.createVehicleShop(addVehicleShop, principal)) {
+            redirectAttributes.addFlashAttribute("addVehicleShop", addVehicleShop);
+            redirectAttributes.addFlashAttribute(
+                    "org.springframework.validation.BindingResult.addVehicleShop", bindingResult);
+
+            return "redirect:/vehicle-shop/add";
+        }
+
+
+        return "redirect:/users/home";
     }
 }

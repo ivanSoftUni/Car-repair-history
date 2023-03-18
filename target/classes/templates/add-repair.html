@@ -17,38 +17,27 @@
         <div class="mb-3">
             <label for="car" class="form-label">Select Car</label>
             <select class="form-select" id="car" th:field="*{carId}">
-                <option th:each="car : ${cars}"  th:value="${car.getId()}" th:text="${car.getModel()}"></option>
+                <option th:each="car : ${cars}"  th:value="${car.getId()}" th:text="|${car.getBrand()} - ${car.getModel()}|"></option>
             </select>
         </div>
         <div class="mb-3">
             <label for="description" class="form-label">Description</label>
-            <input type="text" class="form-control" id="description" placeholder="Въведете описание">
+            <input th:field="*{description}" th:errorclass="is-invalid" type="text" class="form-control" id="description" placeholder="Въведете описание">
+            <small class="invalid-feedback text-danger">Description error message</small>
         </div>
         <div class="mb-3">
             <label for="date" class="form-label">Date</label>
-            <input type="date" class="form-control" id="date">
+            <input th:field="*{date}" th:errorclass="is-invalid" type="date" class="form-control" id="date">
+            <small class="invalid-feedback text-danger">Date error message</small>
         </div>
         <div class="mb-3">
             <label for="comment" class="form-label">Comment</label>
-            <textarea class="form-control" id="comment" rows="3"></textarea>
+            <textarea class="form-control" th:field="*{comment}" id="comment" rows="3"></textarea>
         </div>
         <div class="mb-3">
             <label for="price" class="form-label">Price</label>
-            <input type="number" class="form-control" id="price" placeholder="Въведете цена">
-        </div>
-<!--        <div class="mb-3">-->
-<!--            <label for="category" class="form-label">Parts Category</label>-->
-<!--            <select class="browser-default custom-select" id="category" name="category"-->
-<!--                    th:errorclass="is-invalid">-->
-<!--&lt;!&ndash;                                     th:field="*{category}"&ndash;&gt;-->
-<!--                &lt;!&ndash;                        <option value="">Select Category</option>&ndash;&gt;-->
-<!--                <option th:each="c : ${categoryList}" th:value="${c.getName()}" th:text="${c.getName()}"></option>-->
-<!--            </select>-->
-<!--        </div>-->
-        <div class="mb-3">
-            <label for="parts" class="form-label">Parts</label>
-            <select class="form-select" id="parts" multiple disabled>
-            </select>
+            <input th:field="*{price}" th:errorclass="is-invalid" type="number" class="form-control" id="price" placeholder="Въведете цена">
+            <small class="invalid-feedback text-danger">Price error message</small>
         </div>
         <div class="mb-3">
             <label for="repairShop" class="form-label">Select Repair Shop</label>
@@ -59,7 +48,7 @@
             </select>
         </div>
         <button type="submit" class="btn btn-primary mt-3">Submit</button>
-        <button type="button" class="btn btn-secondary mt-3" id="add-parts">Add Parts</button>
+<!--        <button type="button" class="btn btn-secondary mt-3" id="add-parts">Add Parts</button>-->
     </form>
 
 </div>

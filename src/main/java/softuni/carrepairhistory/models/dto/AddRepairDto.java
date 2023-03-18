@@ -8,6 +8,7 @@ import softuni.carrepairhistory.models.entities.VehiclesRepairsShop;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AddRepairDto {
@@ -26,7 +27,7 @@ public class AddRepairDto {
 
     @NotNull
     private VehiclesRepairsShop repairsShop;
-    private List<Part> partList;
+    private List<Part> partList = new ArrayList<>();
 
 
     public AddRepairDto() {

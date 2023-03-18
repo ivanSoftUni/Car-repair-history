@@ -22,6 +22,8 @@ public class VehiclesRepairsShop extends BaseEntity {
 
     @OneToMany
     private List<Car> cars = new ArrayList<>();
+    @ManyToOne
+    private UserEntity user;
 
 
     public VehiclesRepairsShop() {
@@ -68,4 +70,11 @@ public class VehiclesRepairsShop extends BaseEntity {
         this.address = address;
     }
 
+    public UserEntity getUser() {
+        return user;
+    }
+
+    public void setUser(UserEntity user) {
+        this.user = user;
+    }
 }

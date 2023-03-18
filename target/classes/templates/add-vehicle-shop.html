@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/head}"></head>
+<body>
+<header th:replace="~{fragments/navbar::navbar}"></header>
+<main>
+    <div class="container-fluid mx-auto w-50">
+        <form class="mx-auto w-50 bg-blur rounded"
+              th:method="post"
+              th:action="@{/vehicle-shop/add}"
+              th:object="${addVehicleShop}">
+            <h1 class="text-center md-2">Create Vehicle Shop</h1>
+
+            <br>
+            <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input th:field="*{name}" th:errorclass="is-invalid" type="text" class="form-control" id="name" placeholder="Въведете описание">
+                <small class="invalid-feedback text-danger">Name error message</small>
+            </div>
+            <div class="mb-3">
+                <label for="city" class="form-label">City</label>
+                <input th:field="*{city}" th:errorclass="is-invalid" type="text" class="form-control" id="city">
+                <small class="invalid-feedback text-danger">City error message</small>
+            </div>
+            <div class="mb-3">
+                <label for="address" class="form-label">Address</label>
+                <textarea class="form-control" th:field="*{address}" id="address" rows="3"></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="phoneNumber" class="form-label">Phone number</label>
+                <input th:field="*{phoneNumber}" th:errorclass="is-invalid" type="text" class="form-control" id="phoneNumber" placeholder="Въведете телефонен номер">
+                <small class="invalid-feedback text-danger">Phone number error message</small>
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">Submit</button>
+        </form>
+
+    </div>
+    <script src="/js/bootstrap.min.js"></script>
+</main>
+<footer th:replace="~{fragments/footer}"></footer>
+</body>
+</html>

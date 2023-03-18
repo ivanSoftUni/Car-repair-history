@@ -16,9 +16,6 @@
         <div class="container-fluid text-center" id="navbarNav">
             <ul class="navbar-nav flex-md-row">
                 <li class="nav-item">
-                    <a class="nav-link text-primary active h5 text-stroke" th:href="@{/}">Car History App</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link text-primary active h5 text-stroke" sec:authorize="isAuthenticated()"
                        th:href="@{/users/home}">Home</a>
                 </li>
