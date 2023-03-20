@@ -1,9 +1,9 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:include="fragments/head"></head>
+<head th:replace="~{fragments/head}"></head>
 <body>
-<header th:replace="fragments/navbar::navbar"></header>
+<header th:replace="~{fragments/navbar::navbar}"></header>
 <main>
 
     <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Login</span></h1>
@@ -35,6 +35,6 @@
 
     </form>
 </main>
-<footer th:replace="fragments/footer"></footer>
+<footer th:replace="~{fragments/footer}"></footer>
 </body>
 </html>
