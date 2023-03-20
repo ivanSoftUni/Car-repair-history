@@ -22,7 +22,7 @@
                 <input th:field="*{username}" th:errorclass="'is-invalid alert-danger'" type="text" class="form-control"
                        id="username" name="username"/>
                 <small th:if="${#fields.hasErrors('username')}"
-                       class="text-danger">Username error message</small>
+                       class="invalid-feedback text-danger">Username size must be between 3 and 20</small>
             </div>
 
             <div class="form-group">

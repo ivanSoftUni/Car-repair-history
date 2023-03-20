@@ -7,7 +7,7 @@ import jakarta.validation.constraints.Size;
 
 public class UserRegistrationDto {
 
-    @Size(min = 3, max = 20,message = "Size must be between 3 and 20")
+    @Size(min = 3, max = 20)
     @NotNull
     private String username;
 
