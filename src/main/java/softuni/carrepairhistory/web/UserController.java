@@ -13,6 +13,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import softuni.carrepairhistory.models.dto.UserRegistrationDto;
 import softuni.carrepairhistory.services.UserService;
 
+import java.security.Principal;
+
 @Controller
 public class UserController {
 
@@ -71,7 +73,11 @@ public class UserController {
 
 
     @GetMapping("/users/home")
-    public String getHome() {
+    public String getHome(Model model, Principal principal) {
+
+
+
+
 
         return "home";
     }

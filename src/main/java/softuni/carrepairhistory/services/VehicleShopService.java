@@ -10,30 +10,31 @@ import softuni.carrepairhistory.repositories.VehiclesRepairsShopRepository;
 
 import java.security.Principal;
 import java.util.ArrayList;
-import java.util.Optional;
 
 @Service
 public class VehicleShopService {
 
-    private final UserRepository userRepository;
-    private VehiclesRepairsShopRepository vehiclesRepairsShopRepository;
+
+    private final VehiclesRepairsShopRepository vehiclesRepairsShopRepository;
+    private final UserService userService;
 
     @Autowired
-    public VehicleShopService(UserRepository userRepository, VehiclesRepairsShopRepository vehiclesRepairsShopRepository) {
-        this.userRepository = userRepository;
+    public VehicleShopService(VehiclesRepairsShopRepository vehiclesRepairsShopRepository, UserService userService) {
+
         this.vehiclesRepairsShopRepository = vehiclesRepairsShopRepository;
+        this.userService = userService;
     }
 
     public boolean createVehicleShop(AddVehicleShop addVehicleShop,
                                      Principal principal) {
-        UserEntity user = this.userRepository.findByUsername(principal.getName()).get();
+
 
         VehiclesRepairsShop vehiclesRepairsShop = new VehiclesRepairsShop();
         vehiclesRepairsShop.setName(addVehicleShop.getName());
         vehiclesRepairsShop.setCity(addVehicleShop.getCity());
         vehiclesRepairsShop.setAddress(addVehicleShop.getAddress());
         vehiclesRepairsShop.setPhoneNumber(addVehicleShop.getPhoneNumber());
-        vehiclesRepairsShop.setUser(user);
+        vehiclesRepairsShop.setUser(userService.loggedUser(principal.getName()));
         vehiclesRepairsShop.setCars(new ArrayList<>());
 
         this.vehiclesRepairsShopRepository.save(vehiclesRepairsShop);

@@ -4,10 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import softuni.carrepairhistory.models.dto.CreateCarDto;
 import softuni.carrepairhistory.models.entities.Car;
-import softuni.carrepairhistory.models.entities.UserEntity;
 import softuni.carrepairhistory.models.enums.CarFuels;
 import softuni.carrepairhistory.repositories.CarRepository;
-import softuni.carrepairhistory.repositories.UserRepository;
+
 
 import java.security.Principal;
 import java.util.Optional;
@@ -16,18 +15,18 @@ import java.util.Optional;
 public class CarService {
 
     private final CarRepository carRepository;
-    private final UserRepository userRepository;
+
+    private final UserService userService;
 
     @Autowired
-    public CarService(CarRepository carRepository, UserRepository userRepository) {
+    public CarService(CarRepository carRepository, UserService userService) {
         this.carRepository = carRepository;
-        this.userRepository = userRepository;
+        this.userService = userService;
     }
 
 
     public boolean registerCar(Principal principal, CreateCarDto createCarDto) {
 
-        Optional<UserEntity> user = this.userRepository.findByUsername(principal.getName());
         CarFuels carFuels = CarFuels.valueOf(createCarDto.getFuel());
 
         Optional<Car> optionalCar = this.carRepository.findByRegisterNumber(createCarDto.getRegisterNumber());
@@ -43,7 +42,7 @@ public class CarService {
         car.setHorsePower(createCarDto.getHorsePower());
         car.setEngine(createCarDto.getEngine());
         car.setRegisterNumber(createCarDto.getRegisterNumber());
-        car.setUserEntity(user.get());
+        car.setUserEntity(userService.loggedUser(principal.getName()));
         car.setFuel(carFuels);
 
         this.carRepository.save(car);

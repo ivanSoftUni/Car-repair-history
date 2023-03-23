@@ -14,22 +14,21 @@ import softuni.carrepairhistory.repositories.UserRepository;
 import softuni.carrepairhistory.repositories.VehiclesRepairsShopRepository;
 
 import java.security.Principal;
-import java.util.ArrayList;
 import java.util.Optional;
 
 @Service
 public class RepairService {
     private final CarRepository carRepository;
-    private final UserRepository userRepository;
     private final RepairRepository repairRepository;
     private final VehiclesRepairsShopRepository vehiclesRepairsShopRepository;
+    private final UserService userService;
 
     @Autowired
-    public RepairService(CarRepository carRepository, UserRepository userRepository, RepairRepository repairRepository, VehiclesRepairsShopRepository vehiclesRepairsShopRepository) {
+    public RepairService(CarRepository carRepository, RepairRepository repairRepository, VehiclesRepairsShopRepository vehiclesRepairsShopRepository, UserService userService) {
         this.carRepository = carRepository;
-        this.userRepository = userRepository;
         this.repairRepository = repairRepository;
         this.vehiclesRepairsShopRepository = vehiclesRepairsShopRepository;
+        this.userService = userService;
     }
 
 
@@ -38,7 +37,7 @@ public class RepairService {
 
         Optional<Car> car = this.carRepository.findById(addRepairDto.getCarId());
         Optional<VehiclesRepairsShop> shop = this.vehiclesRepairsShopRepository.findById(addRepairDto.getVehicleShopId());
-        UserEntity user = this.userRepository.findByUsername(principal.getName()).get();
+
 
         if (car.isEmpty() || shop.isEmpty()) {
             return false;
@@ -53,7 +52,7 @@ public class RepairService {
 
         repair.setCar(car.get());
         repair.setRepairsShop(shop.get());
-        repair.setUser(user);
+        repair.setUser(userService.loggedUser(principal.getName()));
 
         this.repairRepository.save(repair);
 

@@ -128,7 +128,7 @@ public class RepairController {
                 .toList();
 
         model.addAttribute("repairsDetails", repairsDetails);
-        System.out.println();
+
         return "details";
     }
 }
