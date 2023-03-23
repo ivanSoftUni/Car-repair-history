@@ -2,6 +2,7 @@ package softuni.carrepairhistory.web;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.AuthenticatedPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import softuni.carrepairhistory.models.dto.AddRepairDto;
 import softuni.carrepairhistory.models.dto.AddVehicleShop;
+import softuni.carrepairhistory.models.dto.RepairDetailDto;
 import softuni.carrepairhistory.models.entities.Car;
 import softuni.carrepairhistory.models.entities.PartsCategory;
 import softuni.carrepairhistory.models.entities.UserEntity;
@@ -21,6 +23,7 @@ import softuni.carrepairhistory.services.VehicleShopService;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class RepairController {
@@ -77,9 +80,10 @@ public class RepairController {
     @PostMapping("/repair/add")
     public String addRepair(@Valid AddRepairDto addRepairDto,
                             BindingResult bindingResult,
-                            RedirectAttributes redirectAttributes) {
+                            RedirectAttributes redirectAttributes,
+                            Principal principal) {
 
-        if (bindingResult.hasErrors() || !this.repairService.createRepair(addRepairDto)) {
+        if (bindingResult.hasErrors() || !this.repairService.createRepair(addRepairDto, principal)) {
             redirectAttributes.addFlashAttribute("addRepairDto", addRepairDto);
             redirectAttributes.addFlashAttribute(
                     "org.springframework.validation.BindingResult.addRepairDto", bindingResult);
@@ -112,5 +116,20 @@ public class RepairController {
         }
 
         return "redirect:/users/home";
+    }
+
+    @GetMapping("/repair/details")
+    public String getDetails(Model model, Principal authenticatedPrincipal) {
+
+        Optional<UserEntity> user = userRepository.findByUsername(authenticatedPrincipal.getName());
+
+        List<RepairDetailDto> repairsDetails = this.repairRepository.findAllByUserId(user.get().getId())
+                .stream()
+                .map(repairService::mapToRepairDetail)
+                .toList();
+
+        model.addAttribute("repairsDetails", repairsDetails);
+        System.out.println();
+        return "details";
     }
 }

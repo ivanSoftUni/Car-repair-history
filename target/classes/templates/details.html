@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/head}"></head>
+
+<body>
+<header th:replace="~{fragments/navbar::navbar}"></header>
+
+<section class="details-page">
+    <h1 class="text-center text-white">Всички ремонти</h1>
+    <div class="row">
+        <div class="row-cols-md-4" >
+            <div class="card details-card" th:each="repair : ${repairsDetails}" >
+                <div class="card-body details-card-text" >
+                    <h2 class="card-title" th:text="|Ремонт: ${repair.getRepairTitle()}|"></h2>
+                    <h3 class="card-subtitle mb-2 text-muted" th:text="|Кола: ${repair.getCarInfo()}|"></h3>
+                    <h3 class="card-subtitle mb-2 text-muted" th:text="|Дата: ${repair.getDate().toString()}|"></h3>
+                    <h3 class="card-subtitle mb-2 text-muted" th:text="|Цена: ${repair.getPrice()}|"></h3>
+                    <h3 class="card-subtitle mb-2 text-muted" th:text="|Сервиз: ${repair.getServiceShopName()}|"></h3>
+                    <p class="card-text" th:text="|Коментар: ${repair.getComment().toString()}|"></p>
+                    <div class="col-md-4">
+                        <div class="card details-card-image">
+                            <img src="/images/car.jpg" class="card-img-top" alt="test">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="buttons">
+                        <a href="#" class="btn btn-primary btn-edit">Edit</a>
+                        <a href="#" class="btn btn-danger btn-delete">Delete</a>
+                    </div>
+                </div>
+                <br>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+</body>
+
+</html>

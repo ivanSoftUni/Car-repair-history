@@ -16,28 +16,32 @@
         <div class="container-fluid text-center" id="navbarNav">
             <ul class="navbar-nav flex-md-row">
                 <li class="nav-item">
-                    <a class="nav-link text-primary active h5 text-stroke" sec:authorize="isAuthenticated()"
-                       th:href="@{/users/home}">Home</a>
+                    <a class="nav-link text-primary active h5 text-stroke"
+                       th:href="@{/}">Начало</a>
                 </li>
                 <li class="nav-item ">
                     <a class="nav-link text-primary active h5 text-stroke" sec:authorize="isAuthenticated()"
-                       th:href="@{/car/add}">Add Car</a>
+                       th:href="@{/car/add}">Добавяне на кола</a>
                 </li>
                 <li class="nav-item ">
                     <a class="nav-link text-primary active h5 text-stroke" sec:authorize="isAuthenticated()"
-                       th:href="@{/vehicle-shop/add}">Add Vehicle Shop</a>
+                       th:href="@{/vehicle-shop/add}">Добавяне на сервиз</a>
                 </li>
                 <li class="nav-item ">
                     <a class="nav-link text-primary active h5 text-stroke" sec:authorize="isAuthenticated()"
-                       th:href="@{/repair/add}">Add Repair</a>
+                       th:href="@{/repair/add}">Добавяне на ремонт</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link text-primary active h5 text-stroke" sec:authorize="isAuthenticated()"
+                       th:href="@{/repair/details}">Всички ремонти</a>
                 </li>
                 <li class="nav-item ">
                     <a class="nav-link text-primary active h5 text-stroke" sec:authorize="hasRole('ADMIN')"
-                       th:href="@{/part/add}">Add Part</a>
+                       th:href="@{/part/add}">Добавяне на части</a>
                 </li>
                 <li class="nav-item ">
                     <a class="nav-link text-primary active h5 text-stroke" sec:authorize="hasRole('ADMIN')"
-                       th:href="@{/category/add}">Add Parts Category</a>
+                       th:href="@{/category/add}">Добавяне на категория</a>
                 </li>
                 <li class="nav-item" sec:authorize="isAnonymous()">
                     <a class="nav-link text-primary active h5 text-stroke" href="/users/login">Login</a>
@@ -48,7 +52,7 @@
                 </li>
             </ul>
             <div class="form-inline my-3 my-lg-0 px-4">
-                <div class="text-white"> Welcome,
+                <div class="text-white"> Добре дошъл,
                     <th:block sec:authentication="name">!</th:block>
                 </div>
                 <form th:method="post"

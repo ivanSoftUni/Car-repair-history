@@ -11,11 +11,11 @@
           th:method="post"
           th:action="@{/repair/add}"
           th:object="${addRepairDto}">
-        <h1 class="text-center mt-2">Add Repair</h1>
+        <h1 class="text-center mt-2">Добавяне на ремонт</h1>
 
         <br>
         <div class="mb-3">
-            <label for="car" class="form-label">Select Car</label>
+            <label for="car" class="form-label">Избери кола</label>
             <select class="form-select" id="car" th:field="*{carId}">
                 <option th:each="car : ${cars}"  th:value="${car.getId()}" th:text="|${car.getBrand()} - ${car.getModel()}|"></option>
             </select>

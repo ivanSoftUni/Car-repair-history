@@ -26,11 +26,24 @@ public class Repair extends BaseEntity {
     @OneToMany(fetch = FetchType.EAGER)
     private List<Part> parts;
 
+    @OneToOne
+    private Car car;
+    @OneToOne
+    private UserEntity user;
+    @OneToOne
+    private VehiclesRepairsShop repairsShop;
 
     public Repair() {
 
     }
 
+    public UserEntity getUser() {
+        return user;
+    }
+
+    public void setUser(UserEntity user) {
+        this.user = user;
+    }
 
     public String getDescription() {
         return description;
@@ -72,5 +85,19 @@ public class Repair extends BaseEntity {
         this.parts = parts;
     }
 
+    public Car getCar() {
+        return car;
+    }
 
+    public void setCar(Car car) {
+        this.car = car;
+    }
+
+    public VehiclesRepairsShop getRepairsShop() {
+        return repairsShop;
+    }
+
+    public void setRepairsShop(VehiclesRepairsShop repairsShop) {
+        this.repairsShop = repairsShop;
+    }
 }

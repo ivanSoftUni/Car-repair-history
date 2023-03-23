@@ -23,11 +23,20 @@ public class UserEntity extends BaseEntity {
 
     @ManyToMany(fetch = FetchType.EAGER)
     private List<RoleEntity> userRoles = new ArrayList<>();
+    @OneToMany(fetch = FetchType.EAGER)
+    private List<Repair> repairs = new ArrayList<>();
 
     public UserEntity() {
 
     }
 
+    public List<Repair> getRepairs() {
+        return repairs;
+    }
+
+    public void setRepairs(List<Repair> repairs) {
+        this.repairs = repairs;
+    }
 
     public String getUsername() {
         return username;
