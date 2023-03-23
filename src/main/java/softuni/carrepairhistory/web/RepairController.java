@@ -2,7 +2,6 @@ package softuni.carrepairhistory.web;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.AuthenticatedPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,7 +13,6 @@ import softuni.carrepairhistory.models.dto.AddRepairDto;
 import softuni.carrepairhistory.models.dto.AddVehicleShop;
 import softuni.carrepairhistory.models.dto.RepairDetailDto;
 import softuni.carrepairhistory.models.entities.Car;
-import softuni.carrepairhistory.models.entities.PartsCategory;
 import softuni.carrepairhistory.models.entities.UserEntity;
 import softuni.carrepairhistory.models.entities.VehiclesRepairsShop;
 import softuni.carrepairhistory.repositories.*;
@@ -28,7 +26,6 @@ import java.util.Optional;
 @Controller
 public class RepairController {
 
-    private final PartsCategoryRepository categoryRepository;
     private final RepairRepository repairRepository;
     private final CarRepository carRepository;
     private final VehiclesRepairsShopRepository repairsShopRepository;
@@ -38,8 +35,13 @@ public class RepairController {
     private final RepairService repairService;
 
     @Autowired
-    public RepairController(PartsCategoryRepository categoryRepository, RepairRepository repairRepository, CarRepository carRepository, VehiclesRepairsShopRepository repairsShopRepository, UserRepository userRepository, VehicleShopService vehicleShopService, VehiclesRepairsShopRepository vehiclesRepairsShopRepository, RepairService repairService) {
-        this.categoryRepository = categoryRepository;
+    public RepairController(RepairRepository repairRepository,
+                            CarRepository carRepository,
+                            VehiclesRepairsShopRepository repairsShopRepository,
+                            UserRepository userRepository,
+                            VehicleShopService vehicleShopService,
+                            VehiclesRepairsShopRepository vehiclesRepairsShopRepository,
+                            RepairService repairService) {
         this.repairRepository = repairRepository;
         this.carRepository = carRepository;
 
@@ -62,9 +64,6 @@ public class RepairController {
 
     @GetMapping("/repair/add")
     public String getRepair(Model model, Principal principal) {
-
-        List<PartsCategory> categoryList = this.categoryRepository.findAll();
-        model.addAttribute("categoryList", categoryList);
 
         UserEntity user = this.userRepository.findByUsername(principal.getName()).get();
 

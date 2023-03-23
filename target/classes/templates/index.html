@@ -7,12 +7,12 @@
 <header th:replace="~{fragments/navbar::navbar}"></header>
 <main>
     <div class="container bg-blur rounded mt-5">
-        <h1>Welcome to Car Repair History</h1>
-        <hr class="my-3 bg-white w-50"/>
+        <h1 class="alert-info">Welcome to Car Repair History</h1>
+        <hr class="my-3 bg-white w-100"/>
 
         <p class="h4">
             Car Repair History е място където можете да водите сервизна история на Вашият автомобил.</p>
-        <hr class="my-3 bg-white w-75"/>
+        <hr class="my-3 bg-white w-100"/>
 
         <h3 sec:authorize="isAnonymous()">
             <a class="text-primary" href="/users/login">Login</a>
@@ -23,6 +23,7 @@
     </div>
     <div class="container bg-blur rounded mt-5" sec:authorize="isAuthenticated()">
         <h1>Кратко описание при първоначално използване</h1>
+        <hr class="my-3 bg-white w-100"/>
         <p class="h4">
             1. Регистрирате автомобил
         </p>
@@ -32,7 +33,7 @@
         <p class="h4">
             3. Регистрирате ремонт
         </p>
-        <hr class="my-3 bg-white w-75"/>
+
     </div>
 </main>
 <footer th:replace="~{/fragments/footer}"></footer>

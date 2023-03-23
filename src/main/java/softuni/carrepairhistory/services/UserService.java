@@ -56,7 +56,7 @@ public class UserService {
     private void createAdmin(List<RoleEntity> roles) {
         UserEntity admin = new UserEntity();
         admin.setUserRoles(roles);
-        admin.setUsername("Admin");
+        admin.setUsername("admin");
         admin.setEmail("admin@car.bg");
         admin.setPassword(passwordEncoder.encode(defaultPassword));
 

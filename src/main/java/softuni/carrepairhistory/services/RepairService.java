@@ -50,7 +50,6 @@ public class RepairService {
         repair.setDate(addRepairDto.getDate());
         repair.setComment(addRepairDto.getComment());
         repair.setPrice(addRepairDto.getPrice());
-        repair.setParts(new ArrayList<>());
 
         repair.setCar(car.get());
         repair.setRepairsShop(shop.get());
@@ -59,7 +58,6 @@ public class RepairService {
         this.repairRepository.save(repair);
 
         shop.get().getCars().add(car.get());
-        user.getRepairs().add(repair);
 
 
         return true;

@@ -23,9 +23,6 @@ public class Repair extends BaseEntity {
     @Column(nullable = false)
     private BigDecimal price;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    private List<Part> parts;
-
     @OneToOne
     private Car car;
     @OneToOne
@@ -75,14 +72,6 @@ public class Repair extends BaseEntity {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
-    }
-
-    public List<Part> getParts() {
-        return parts;
-    }
-
-    public void setParts(List<Part> parts) {
-        this.parts = parts;
     }
 
     public Car getCar() {

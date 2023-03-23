@@ -8,7 +8,7 @@ import jakarta.validation.constraints.Size;
 public class CreateCarDto {
 
     @NotNull
-    @Size(min = 3)
+    @Size(min = 2)
     private String brand;
 
     @NotNull
@@ -16,7 +16,7 @@ public class CreateCarDto {
 
     @NotNull
     @Size(min = 2)
-    private String madeYear;
+    private Integer madeYear;
 
     @NotNull
     @Positive
@@ -52,11 +52,11 @@ public class CreateCarDto {
         this.model = model;
     }
 
-    public String getMadeYear() {
+    public Integer getMadeYear() {
         return madeYear;
     }
 
-    public void setMadeYear(String madeYear) {
+    public void setMadeYear(Integer madeYear) {
         this.madeYear = madeYear;
     }
 

@@ -18,25 +18,16 @@ public class UserEntity extends BaseEntity {
     @Column(nullable = false)
     private String password;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    private List<Car> cars = new ArrayList<>();
+//    @OneToMany(fetch = FetchType.EAGER)
+//    private List<Car> cars = new ArrayList<>();
 
     @ManyToMany(fetch = FetchType.EAGER)
     private List<RoleEntity> userRoles = new ArrayList<>();
-    @OneToMany(fetch = FetchType.EAGER)
-    private List<Repair> repairs = new ArrayList<>();
 
     public UserEntity() {
 
     }
 
-    public List<Repair> getRepairs() {
-        return repairs;
-    }
-
-    public void setRepairs(List<Repair> repairs) {
-        this.repairs = repairs;
-    }
 
     public String getUsername() {
         return username;
@@ -62,13 +53,13 @@ public class UserEntity extends BaseEntity {
         this.password = password;
     }
 
-    public List<Car> getCars() {
-        return cars;
-    }
-
-    public void setCars(List<Car> cars) {
-        this.cars = cars;
-    }
+//    public List<Car> getCars() {
+//        return cars;
+//    }
+//
+//    public void setCars(List<Car> cars) {
+//        this.cars = cars;
+//    }
 
     public List<RoleEntity> getUserRoles() {
         return userRoles;

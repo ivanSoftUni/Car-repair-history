@@ -17,7 +17,7 @@ public class Car extends BaseEntity {
     private String model;
 
     @Column(name = "made_year", nullable = false)
-    private String madeYear;
+    private Integer madeYear;
 
     @Column(name = "horse_power", nullable = false)
     private int horsePower;
@@ -89,11 +89,11 @@ public class Car extends BaseEntity {
         this.model = model;
     }
 
-    public String getMadeYear() {
+    public Integer getMadeYear() {
         return madeYear;
     }
 
-    public void setMadeYear(String madeYear) {
+    public void setMadeYear(Integer madeYear) {
         this.madeYear = madeYear;
     }
 

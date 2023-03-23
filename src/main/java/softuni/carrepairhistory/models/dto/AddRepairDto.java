@@ -3,14 +3,9 @@ package softuni.carrepairhistory.models.dto;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Positive;
-import org.springframework.format.annotation.DateTimeFormat;
-import softuni.carrepairhistory.models.entities.Part;
-import softuni.carrepairhistory.models.entities.VehiclesRepairsShop;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 public class AddRepairDto {
 
@@ -19,7 +14,6 @@ public class AddRepairDto {
     @NotNull
     private String description;
     @PastOrPresent()
-
     private LocalDate date;
 
     private String comment;
@@ -29,9 +23,6 @@ public class AddRepairDto {
 
     @NotNull
     private Long vehicleShopId;
-
-//    private List<Part> partList = new ArrayList<>();
-
 
     public AddRepairDto() {
 
@@ -85,11 +76,4 @@ public class AddRepairDto {
         this.price = price;
     }
 
-//    public List<Part> getPartList() {
-//        return partList;
-//    }
-//
-//    public void setPartList(List<Part> partList) {
-//        this.partList = partList;
-//    }
 }

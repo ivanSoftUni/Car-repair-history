@@ -15,21 +15,21 @@
 
             <br>
             <div class="mb-3">
-                <label for="name" class="form-label">Name</label>
-                <input th:field="*{name}" th:errorclass="is-invalid" type="text" class="form-control" id="name" placeholder="Въведете описание">
+                <label for="name" class="form-label">Наименование</label>
+                <input th:field="*{name}" th:errorclass="is-invalid" type="text" class="form-control" id="name" placeholder="Въведете име">
                 <small class="invalid-feedback text-danger">Name error message</small>
             </div>
             <div class="mb-3">
-                <label for="city" class="form-label">City</label>
+                <label for="city" class="form-label">Град</label>
                 <input th:field="*{city}" th:errorclass="is-invalid" type="text" class="form-control" id="city">
                 <small class="invalid-feedback text-danger">City error message</small>
             </div>
             <div class="mb-3">
-                <label for="address" class="form-label">Address</label>
-                <textarea class="form-control" th:field="*{address}" id="address" rows="3"></textarea>
+                <label for="address" class="form-label">Адрес</label>
+                <textarea class="form-control" th:field="*{address}" id="address" rows="3" placeholder="Въведете адрес"></textarea>
             </div>
             <div class="mb-3">
-                <label for="phoneNumber" class="form-label">Phone number</label>
+                <label for="phoneNumber" class="form-label">Телафон</label>
                 <input th:field="*{phoneNumber}" th:errorclass="is-invalid" type="text" class="form-control" id="phoneNumber" placeholder="Въведете телефонен номер">
                 <small class="invalid-feedback text-danger">Phone number error message</small>
             </div>

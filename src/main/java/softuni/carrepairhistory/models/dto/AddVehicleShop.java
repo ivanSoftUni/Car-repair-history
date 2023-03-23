@@ -21,7 +21,6 @@ public class AddVehicleShop {
 
     private String address;
 
-
     private String phoneNumber;
 
     public AddVehicleShop() {

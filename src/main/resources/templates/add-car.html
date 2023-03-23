@@ -6,7 +6,7 @@
 <body>
 <header th:replace="~{fragments/navbar::navbar}"></header>
 <main>
-    <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Add Car</span></h1>
+    <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Добавяне на кола</span></h1>
     <hr class="hr-3 w-25 bg-white"/>
 
     <div class="container-fluid mx-auto w-50">
@@ -16,7 +16,7 @@
 
             <div class="row justify-content-center">
                 <div class="col-md-6 mb-3">
-                    <label for="brand" class="h4 mb-2 text-white">Brand</label>
+                    <label for="brand" class="h4 mb-2 text-white">Марка</label>
                     <input type="text" class="form-control"
                            id="brand" name="brand"
                            th:field="*{brand}"
@@ -25,7 +25,7 @@
                 </div>
 
                 <div class="col-md-6 mb-3">
-                    <label for="model" class="h4 mb-2">Model</label>
+                    <label for="model" class="h4 mb-2">Модел</label>
                     <input type="text" class="form-control"
                            id="model" name="model"
                            th:field="*{model}"
@@ -34,16 +34,17 @@
                 </div>
 
                 <div class="col-md-6 mb-3">
-                    <label for="year" class="h4 mb-2">Year</label>
+                    <label for="year" class="h4 mb-2">Година</label>
                     <input class="form-control" id="year" type="number"
                            name="year"
+                           placeholder="Година на производство"
                            th:field="*{madeYear}"
                            th:errorclass="is-invalid"/>
                     <small class="invalid-feedback text-danger">Year error message</small>
                 </div>
 
                 <div class="col-md-6 mb-3">
-                    <label for="horsePower" class="h4 mb-2">Horse Power</label>
+                    <label for="horsePower" class="h4 mb-2">Конски сили</label>
                     <input type="number" class="form-control" id="horsePower" name="horsePower"
                            th:field="*{horsePower}"
                            th:errorclass="is-invalid"/>
@@ -52,14 +53,14 @@
                 </div>
 
                 <div class="col-md-6 mb-3">
-                    <label for="engine" class="h4 mb-2">Engine</label>
-                    <input type="text" class="form-control" id="engine" name="engine"
+                    <label for="engine" class="h4 mb-2">Двигател</label>
+                    <input type="text" class="form-control" id="engine" name="engine" placeholder="Въведете кубатура на двигателя"
                            th:field="*{engine}"
                            th:errorclass="is-invalid"/>
                     <small class="invalid-feedback text-danger">Engine error message</small>
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="registerNumber" class="h4 mb-2">Register Number</label>
+                    <label for="registerNumber" class="h4 mb-2">Регистрационен номер</label>
                     <input type="text" class="form-control" id="registerNumber" name="registerNumber"
                            th:field="*{registerNumber}"
                            th:errorclass="is-invalid"/>
@@ -67,7 +68,7 @@
                 </div>
 
                 <div class="col-md-6 mb-3">
-                    <label for="fuel" class="h4 mb-2">Fuel</label>
+                    <label for="fuel" class="h4 mb-2">Гориво</label>
                     <select class="browser-default custom-select" id="fuel" name="fuel"
                             th:field="*{fuel}"
                             th:errorclass="is-invalid">
@@ -82,7 +83,7 @@
                 </div>
 
                 <div class="button-holder d-flex justify-content-center">
-                    <button type="submit" class="btn btn-warning  mb-3" value="Add Car">Add Car</button>
+                    <button type="submit" class="btn btn-warning  mb-3" value="Add Car">Добавяне на кола</button>
                 </div>
             </div>
         </form>
