@@ -1,6 +1,7 @@
 package softuni.carrepairhistory.models.dto;
 
 
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
@@ -15,7 +16,7 @@ public class CreateCarDto {
     private String model;
 
     @NotNull
-    @Size(min = 2)
+    @Min(2)
     private Integer madeYear;
 
     @NotNull
@@ -28,7 +29,8 @@ public class CreateCarDto {
     @NotNull
     private String fuel;
 
-@NotNull
+    @NotNull
+    @Size(min = 4, max = 10)
     private String registerNumber;
 
 

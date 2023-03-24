@@ -72,19 +72,5 @@ public class UserController {
     }
 
 
-    @GetMapping("/users/home")
-    public String getHome(Model model, Principal principal) {
 
-
-
-
-
-        return "home";
-    }
-
-    @GetMapping("/")
-    public String index() {
-
-        return "index";
-    }
 }

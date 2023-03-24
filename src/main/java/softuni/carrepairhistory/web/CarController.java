@@ -24,7 +24,6 @@ public class CarController {
     @Autowired
     public CarController(CarRepository carRepository, CarService carService) {
         this.carRepository = carRepository;
-
         this.carService = carService;
     }
 
@@ -56,6 +55,6 @@ public class CarController {
         }
 
 
-        return "redirect:/users/home";
+        return "redirect:/users/all/cars";
     }
 }

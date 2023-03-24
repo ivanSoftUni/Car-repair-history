@@ -36,7 +36,7 @@ public class SecurityConfig {
                 loginPage("/users/login").
                 usernameParameter("username").
                 passwordParameter("password").
-                defaultSuccessUrl("/users/home", true).
+                defaultSuccessUrl("/users/all/cars", true).
                 failureForwardUrl("/users/login-error").
                 and().
                 logout().

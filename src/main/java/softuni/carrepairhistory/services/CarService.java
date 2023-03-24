@@ -2,13 +2,18 @@ package softuni.carrepairhistory.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import softuni.carrepairhistory.models.dto.CarInfoDto;
 import softuni.carrepairhistory.models.dto.CreateCarDto;
 import softuni.carrepairhistory.models.entities.Car;
+import softuni.carrepairhistory.models.entities.Repair;
 import softuni.carrepairhistory.models.enums.CarFuels;
 import softuni.carrepairhistory.repositories.CarRepository;
+import softuni.carrepairhistory.repositories.RepairRepository;
 
 
+import java.math.BigDecimal;
 import java.security.Principal;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -17,11 +22,13 @@ public class CarService {
     private final CarRepository carRepository;
 
     private final UserService userService;
+    private final RepairRepository repairRepository;
 
     @Autowired
-    public CarService(CarRepository carRepository, UserService userService) {
+    public CarService(CarRepository carRepository, UserService userService, RepairRepository repairRepository) {
         this.carRepository = carRepository;
         this.userService = userService;
+        this.repairRepository = repairRepository;
     }
 
 
@@ -49,5 +56,24 @@ public class CarService {
 
 
         return true;
+    }
+
+    public CarInfoDto mapToCarInfo(Car car) {
+
+        List<Repair> repairList = this.repairRepository.findAllByCarId(car.getId());
+        double sum = repairList.stream().map(Repair::getPrice).mapToDouble(BigDecimal::doubleValue).sum();
+
+
+        CarInfoDto carInfoDto = new CarInfoDto();
+
+        carInfoDto.setId(car.getId());
+        carInfoDto.setBrand(car.getBrand());
+        carInfoDto.setModel(car.getModel());
+        carInfoDto.setRepairsCount(repairList.size());
+        carInfoDto.setRegisterNumber(car.getRegisterNumber());
+        carInfoDto.setTotalRepairPrice(BigDecimal.valueOf(sum));
+
+
+        return carInfoDto;
     }
 }

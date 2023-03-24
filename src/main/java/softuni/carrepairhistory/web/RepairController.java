@@ -91,7 +91,7 @@ public class RepairController {
             return "redirect:/repair/add";
         }
 
-        return "redirect:/users/home";
+        return "redirect:/users/all/cars";
     }
 
     @GetMapping("/vehicle-shop/add")
@@ -114,7 +114,7 @@ public class RepairController {
             return "redirect:/vehicle-shop/add";
         }
 
-        return "redirect:/users/home";
+        return "redirect:/users/all/cars";
     }
 
     @GetMapping("/repair/details")

@@ -14,6 +14,7 @@ import softuni.carrepairhistory.repositories.UserRepository;
 import softuni.carrepairhistory.repositories.VehiclesRepairsShopRepository;
 
 import java.security.Principal;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -54,10 +55,12 @@ public class RepairService {
         repair.setRepairsShop(shop.get());
         repair.setUser(userService.loggedUser(principal.getName()));
 
+//        car.get().getRepairList().add(repair);
+//
+//        shop.get().getCars().add(car.get());
+
         this.repairRepository.save(repair);
-
-        shop.get().getCars().add(car.get());
-
+        System.out.println();
 
         return true;
     }

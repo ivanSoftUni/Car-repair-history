@@ -23,7 +23,7 @@ public class Repair extends BaseEntity {
     @Column(nullable = false)
     private BigDecimal price;
 
-    @OneToOne
+    @ManyToOne()
     private Car car;
     @OneToOne
     private UserEntity user;
