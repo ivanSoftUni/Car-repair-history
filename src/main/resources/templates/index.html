@@ -7,7 +7,7 @@
 <header th:replace="~{fragments/navbar::navbar}"></header>
 <main>
     <div class="container bg-blur rounded mt-5">
-        <h1 class="alert-info">Welcome to Car Repair History</h1>
+        <h1 class="alert-info">Добре дошли в Car Repair History</h1>
         <hr class="my-3 bg-white w-100"/>
 
         <p class="h4">
@@ -15,10 +15,10 @@
         <hr class="my-3 bg-white w-100"/>
 
         <h3 sec:authorize="isAnonymous()">
-            <a class="text-primary" href="/users/login">Login</a>
-            if you have an account or
-            <a class="text-primary" href="/users/register">Register</a>
-            now and check our deals.
+            <a class="text-primary" href="/users/login">Вход</a>
+            ако имаш акаунт или
+            <a class="text-primary" href="/users/register">Регистрирай се</a>
+            ако все още нямаш акаунт.
         </h3>
     </div>
     <div class="container bg-blur rounded mt-5" sec:authorize="isAuthenticated()">
