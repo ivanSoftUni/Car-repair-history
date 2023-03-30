@@ -6,15 +6,12 @@ import softuni.carrepairhistory.models.dto.AddRepairDto;
 import softuni.carrepairhistory.models.dto.RepairDetailDto;
 import softuni.carrepairhistory.models.entities.Car;
 import softuni.carrepairhistory.models.entities.Repair;
-import softuni.carrepairhistory.models.entities.UserEntity;
 import softuni.carrepairhistory.models.entities.VehiclesRepairsShop;
 import softuni.carrepairhistory.repositories.CarRepository;
 import softuni.carrepairhistory.repositories.RepairRepository;
-import softuni.carrepairhistory.repositories.UserRepository;
 import softuni.carrepairhistory.repositories.VehiclesRepairsShopRepository;
 
 import java.security.Principal;
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -55,12 +52,8 @@ public class RepairService {
         repair.setRepairsShop(shop.get());
         repair.setUser(userService.loggedUser(principal.getName()));
 
-//        car.get().getRepairList().add(repair);
-//
-//        shop.get().getCars().add(car.get());
 
         this.repairRepository.save(repair);
-        System.out.println();
 
         return true;
     }

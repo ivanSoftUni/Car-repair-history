@@ -36,9 +36,9 @@ public class CarService {
 
         CarFuels carFuels = CarFuels.valueOf(createCarDto.getFuel());
 
-        Optional<Car> optionalCar = this.carRepository.findByRegisterNumber(createCarDto.getRegisterNumber());
+        Optional<Car> existCar = this.carRepository.findByRegisterNumber(createCarDto.getRegisterNumber());
 
-        if (optionalCar.isPresent()) {
+        if (existCar.isPresent()) {
             return false;
         }
 

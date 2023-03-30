@@ -2,15 +2,32 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="~{fragments/head}"></head>
+<head th:replace="~{fragments/head}">
+    <title>Административен панел</title>
+</head>
 <body>
 <header th:replace="~{fragments/navbar::navbar}"></header>
-<main>
-    <div class="container bg-blur rounded mt-5">
-        <h1>Welcome to Admin Pages</h1>
-
-    </div>
-</main>
+<div class="container-fluid">
+    <h1>Административен панел</h1>
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Roles</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody >
+        <tr th:each="user : ${allUsers}">
+            <td th:text="${user.getUsername()}"></td>
+            <td th:text="${user.getEmail()}"></td>
+            <td th:text="${user.toString()}"></td>
+            <td><button class="btn btn-primary make-admin-btn">Направи админ</button></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 <footer th:replace="~{fragments/footer}"></footer>
 </body>
 </html>

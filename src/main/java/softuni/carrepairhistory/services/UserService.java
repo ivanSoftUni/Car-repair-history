@@ -1,17 +1,14 @@
 package softuni.carrepairhistory.services;
 
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import softuni.carrepairhistory.models.dto.UserRegistrationDto;
+import softuni.carrepairhistory.models.dto.UserStatusDto;
 import softuni.carrepairhistory.models.entities.UserEntity;
 import softuni.carrepairhistory.models.entities.RoleEntity;
 import softuni.carrepairhistory.models.enums.UserRoleEnum;
@@ -29,18 +26,20 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
     private final UserDetailsService userDetailsService;
     private final String defaultPassword;
+    private final ModelMapper modelMapper;
 
     @Autowired
     public UserService(RoleRepository roleRepository, RoleService roleService, UserRepository userRepository,
                        PasswordEncoder passwordEncoder,
                        UserDetailsService userDetailsService,
-                       @Value("${app.default.password}") String defaultPassword) {
+                       @Value("${app.default.password}") String defaultPassword, ModelMapper modelMapper) {
         this.roleRepository = roleRepository;
         this.roleService = roleService;
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.userDetailsService = userDetailsService;
         this.defaultPassword = defaultPassword;
+        this.modelMapper = modelMapper;
     }
 
     public void init() {
@@ -91,19 +90,6 @@ public class UserService {
         return true;
     }
 
-    public void login(String username) {
-
-        UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-
-        Authentication auth = new UsernamePasswordAuthenticationToken(
-                userDetails,
-                userDetails.getPassword(),
-                userDetails.getAuthorities());
-
-        SecurityContextHolder.
-                getContext().
-                setAuthentication(auth);
-    }
 
     public UserEntity loggedUser(String username) {
 
@@ -112,4 +98,11 @@ public class UserService {
         return user.get();
     }
 
+    public List<UserStatusDto> getAllUsers() {
+        List<UserEntity> userEntityList = this.userRepository.findAllBy();
+
+        List<UserStatusDto> allUsers = userEntityList.stream().map(user -> modelMapper.map(user, UserStatusDto.class)).toList();
+        System.out.println();
+        return allUsers;
+    }
 }
