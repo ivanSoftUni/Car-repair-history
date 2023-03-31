@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       xmlns:th="http://www.thymeleaf.org">
-<head th:include="~{fragments/head}"></head>
+<head th:insert="~{fragments/head}"></head>
 <body>
 <header th:replace="~{fragments/navbar::navbar}"></header>
 <main>
@@ -17,7 +17,7 @@
                             <td class="bg-primary" th:text="|${car.getBrand()} - ${car.getModel()} ${car.getRegisterNumber()}|"></td>
                             <td class="bg-primary" th:text="|Брой ремонти: ${car.getRepairsCount()}|"></td>
                             <td class="bg-primary" th:text="|Цена всички ремонти: ${car.getTotalRepairPrice()} лв.|"></td>
-                            <td style="width: 10%"><a class="btn btn-danger">Remove</a></td>
+                            <td style="width: 10%"><a class="btn btn-danger" th:href="@{/remove/car/{id}(id = ${car.getId()})}">Remove</a></td>
                         </tr>
                         </tbody>
                     </table>

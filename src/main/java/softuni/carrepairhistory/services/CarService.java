@@ -20,13 +20,15 @@ import java.util.Optional;
 public class CarService {
 
     private final CarRepository carRepository;
+    private final RepairService repairService;
 
     private final UserService userService;
     private final RepairRepository repairRepository;
 
     @Autowired
-    public CarService(CarRepository carRepository, UserService userService, RepairRepository repairRepository) {
+    public CarService(CarRepository carRepository, RepairService repairService, UserService userService, RepairRepository repairRepository) {
         this.carRepository = carRepository;
+        this.repairService = repairService;
         this.userService = userService;
         this.repairRepository = repairRepository;
     }
@@ -75,5 +77,18 @@ public class CarService {
 
 
         return carInfoDto;
+    }
+
+    public void removeCar(Long id) {
+
+        Optional<Car> car = this.carRepository.findById(id);
+        if (car.isPresent()) {
+            List<Repair> allRepairsByCarId = this.repairService.getAllRepairsByCarId(id);
+            for (Repair repair : allRepairsByCarId) {
+                repairService.removeRepair(repair.getId());
+            }
+            this.carRepository.deleteById(id);
+
+        }
     }
 }

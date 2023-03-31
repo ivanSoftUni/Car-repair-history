@@ -40,9 +40,9 @@ public class UserStatusDto {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (RoleEntity role : roles) {
-            sb.append(role.getRole().toString() + ",");
+            sb.append(role.getRole().toString() + " ");
 
         }
-        return sb.toString();
+        return sb.toString().trim();
     }
 }

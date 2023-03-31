@@ -8,10 +8,10 @@
 <body>
 <header th:replace="~{fragments/navbar::navbar}"></header>
 <div class="container-fluid">
-    <h1>Административен панел</h1>
+    <h1 class="text-center">Административен панел</h1>
     <table class="table table-bordered table-striped">
         <thead>
-        <tr>
+        <tr class="mx-auto text-center">
             <th>Username</th>
             <th>Email</th>
             <th>Roles</th>
@@ -19,7 +19,7 @@
         </tr>
         </thead>
         <tbody >
-        <tr th:each="user : ${allUsers}">
+        <tr class="mx-auto text-center" th:each="user : ${allUsers}">
             <td th:text="${user.getUsername()}"></td>
             <td th:text="${user.getEmail()}"></td>
             <td th:text="${user.toString()}"></td>

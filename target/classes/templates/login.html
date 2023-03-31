@@ -17,16 +17,21 @@
                 <label for="username" class="h3 mb-2">Username</label>
             </div>
             <input
-                    type="text" class="form-control" id="username" name="username"/>
+                    type="text" class="form-control" id="username" name="username" required minlength="4"
+                    maxlength="20"/>
         </div>
 
         <div class="form-group">
             <div class="label-holder text-white d-flex justify-content-center">
                 <label for="password" class="h3 mb-2">Password</label>
             </div>
-            <input type="password" class="form-control" id="password" name="password"/>
+            <input type="password" class="form-control" id="password" name="password" required minlength="4"
+                   maxlength="20"/>
         </div>
-        <p class="alert-danger" th:if="${bad_credentials}">Incorrect username or password!</p>
+
+<!--        <th:block th:if="${#fields.hasErrors()}">-->
+<!--            <p class="errors alert alert-danger">Incorrect username or password!</p>-->
+<!--        </th:block>-->
 
         <div class="button-holder d-flex justify-content-center">
             <button type="submit" class="btn btn-warning  mb-3">ВХОД</button>

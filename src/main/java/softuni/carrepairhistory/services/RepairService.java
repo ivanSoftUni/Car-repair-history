@@ -12,6 +12,7 @@ import softuni.carrepairhistory.repositories.RepairRepository;
 import softuni.carrepairhistory.repositories.VehiclesRepairsShopRepository;
 
 import java.security.Principal;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -74,4 +75,21 @@ public class RepairService {
         return repairDetailDto;
     }
 
+    public void removeRepair(Long id) {
+
+        Optional<Repair> repair = this.repairRepository.findById(id);
+        if (repair.isPresent()) {
+            this.repairRepository.deleteById(id);
+        }
+    }
+
+    public List<Repair> getAllRepairsByCarId(Long carId) {
+
+        return this.repairRepository.findAllByCarId(carId);
+    }
+
+    public Repair getRepair(Long repairId) {
+
+        return this.repairRepository.findById(repairId).get();
+    }
 }

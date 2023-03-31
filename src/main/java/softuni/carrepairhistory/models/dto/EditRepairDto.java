@@ -1,49 +1,37 @@
 package softuni.carrepairhistory.models.dto;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Positive;
+import softuni.carrepairhistory.models.entities.Car;
+import softuni.carrepairhistory.models.entities.UserEntity;
+import softuni.carrepairhistory.models.entities.VehiclesRepairsShop;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class AddRepairDto {
-
-    @NotNull
-    private Long carId;
+public class EditRepairDto {
     @NotNull
     private String description;
+
     @NotNull
     @PastOrPresent()
     private LocalDate date;
 
+    @NotNull
     private String comment;
+
     @NotNull
     @Positive
     private BigDecimal price;
 
     @NotNull
-    private Long vehicleShopId;
-
-    public AddRepairDto() {
-
-    }
-
-    public Long getVehicleShopId() {
-        return vehicleShopId;
-    }
-
-    public void setVehicleShopId(Long vehicleShopId) {
-        this.vehicleShopId = vehicleShopId;
-    }
-
-    public Long getCarId() {
-        return carId;
-    }
-
-    public void setCarId(Long carId) {
-        this.carId = carId;
-    }
+    private Car car;
+    @NotNull
+    private VehiclesRepairsShop repairsShop;
 
     public String getDescription() {
         return description;
@@ -77,4 +65,19 @@ public class AddRepairDto {
         this.price = price;
     }
 
+    public Car getCar() {
+        return car;
+    }
+
+    public void setCar(Car car) {
+        this.car = car;
+    }
+
+    public VehiclesRepairsShop getRepairsShop() {
+        return repairsShop;
+    }
+
+    public void setRepairsShop(VehiclesRepairsShop repairsShop) {
+        this.repairsShop = repairsShop;
+    }
 }

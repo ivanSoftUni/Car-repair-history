@@ -102,7 +102,7 @@ public class UserService {
         List<UserEntity> userEntityList = this.userRepository.findAllBy();
 
         List<UserStatusDto> allUsers = userEntityList.stream().map(user -> modelMapper.map(user, UserStatusDto.class)).toList();
-        System.out.println();
+
         return allUsers;
     }
 }

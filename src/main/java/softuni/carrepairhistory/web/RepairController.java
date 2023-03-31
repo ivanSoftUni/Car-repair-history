@@ -5,19 +5,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import softuni.carrepairhistory.models.dto.AddRepairDto;
-import softuni.carrepairhistory.models.dto.AddVehicleShop;
+import softuni.carrepairhistory.models.dto.EditRepairDto;
 import softuni.carrepairhistory.models.dto.RepairDetailDto;
 import softuni.carrepairhistory.models.entities.Car;
+import softuni.carrepairhistory.models.entities.Repair;
 import softuni.carrepairhistory.models.entities.UserEntity;
 import softuni.carrepairhistory.models.entities.VehiclesRepairsShop;
 import softuni.carrepairhistory.repositories.*;
 import softuni.carrepairhistory.services.RepairService;
-import softuni.carrepairhistory.services.VehicleShopService;
 
 import java.security.Principal;
 import java.util.List;
@@ -28,9 +26,9 @@ public class RepairController {
 
     private final RepairRepository repairRepository;
     private final CarRepository carRepository;
-    private final VehiclesRepairsShopRepository repairsShopRepository;
+
     private final UserRepository userRepository;
-    private final VehicleShopService vehicleShopService;
+
     private final VehiclesRepairsShopRepository vehiclesRepairsShopRepository;
     private final RepairService repairService;
 
@@ -39,16 +37,11 @@ public class RepairController {
                             CarRepository carRepository,
                             VehiclesRepairsShopRepository repairsShopRepository,
                             UserRepository userRepository,
-                            VehicleShopService vehicleShopService,
-                            VehiclesRepairsShopRepository vehiclesRepairsShopRepository,
                             RepairService repairService) {
         this.repairRepository = repairRepository;
         this.carRepository = carRepository;
-
-        this.repairsShopRepository = repairsShopRepository;
+        this.vehiclesRepairsShopRepository = repairsShopRepository;
         this.userRepository = userRepository;
-        this.vehicleShopService = vehicleShopService;
-        this.vehiclesRepairsShopRepository = vehiclesRepairsShopRepository;
         this.repairService = repairService;
     }
 
@@ -57,10 +50,11 @@ public class RepairController {
         return new AddRepairDto();
     }
 
-    @ModelAttribute("addVehicleShop")
-    public AddVehicleShop initVehicleShop() {
-        return new AddVehicleShop();
+    @ModelAttribute("editRepairDto")
+    public EditRepairDto initEditForm() {
+        return new EditRepairDto();
     }
+
 
     @GetMapping("/repair/add")
     public String getRepair(Model model, Principal principal) {
@@ -87,31 +81,7 @@ public class RepairController {
             redirectAttributes.addFlashAttribute(
                     "org.springframework.validation.BindingResult.addRepairDto", bindingResult);
 
-
             return "redirect:/repair/add";
-        }
-
-        return "redirect:/users/all/cars";
-    }
-
-    @GetMapping("/vehicle-shop/add")
-    public String vehicleShop() {
-
-        return "add-vehicle-shop";
-    }
-
-    @PostMapping("/vehicle-shop/add")
-    public String addVehicleShop(@Valid AddVehicleShop addVehicleShop,
-                                 BindingResult bindingResult,
-                                 RedirectAttributes redirectAttributes,
-                                 Principal principal) {
-
-        if (bindingResult.hasErrors() || !this.vehicleShopService.createVehicleShop(addVehicleShop, principal)) {
-            redirectAttributes.addFlashAttribute("addVehicleShop", addVehicleShop);
-            redirectAttributes.addFlashAttribute(
-                    "org.springframework.validation.BindingResult.addVehicleShop", bindingResult);
-
-            return "redirect:/vehicle-shop/add";
         }
 
         return "redirect:/users/all/cars";
@@ -129,6 +99,31 @@ public class RepairController {
 
         model.addAttribute("repairsDetails", repairsDetails);
 
-        return "details";
+        return "repair-details";
+    }
+
+    @GetMapping("/remove/{id}")
+    public String removeRepair(@PathVariable Long id) {
+
+        this.repairService.removeRepair(id);
+
+        return "redirect:/repair/details";
+    }
+
+    @PostMapping("/repair/edit/{id}")
+    public String editRepair(@PathVariable Long id, Model model) {
+
+        Repair repair = this.repairService.getRepair(id);
+        model.addAttribute("repair", repair);
+
+
+        return "redirect:/repair/details";
+    }
+
+    @GetMapping("/repair/edit/{id}")
+    public String updateRepair(@PathVariable Long id, Model model) {
+
+        model.addAttribute("editRepairDto", this.repairService.getRepair(id));
+        return "edit-repair";
     }
 }

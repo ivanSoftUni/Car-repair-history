@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/head}"></head>
+<body>
+<header th:replace="~{fragments/navbar::navbar}"></header>
+<main>
+    <form class="mx-auto w-50 bg-blur rounded"
+          th:method="POST"
+          th:action="@{/repair/edit}"
+          th:object="${editRepairDto}">
+        <h1 class="text-center mt-2">Редактиране на ремонт</h1>
+
+        <br>
+        <div class="mb-3">
+            <label for="car" class="form-label">Кола</label>
+            <input th:field="*{car}" th:errorclass="is-invalid"
+                   type="text" class="form-control"
+                   id="car" th:value="*{car}">
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Описание</label>
+            <input th:field="*{description}" th:errorclass="is-invalid"
+                   type="text" class="form-control"
+                   id="description" th:value="*{description}">
+            <small class="invalid-feedback text-danger">Description error message</small>
+        </div>
+        <div class="mb-3">
+            <label for="date" class="form-label">Дата</label>
+            <input
+                   type="date"
+                   class="form-control"
+                   id="date" th:value="*{date}">
+            <small class="invalid-feedback text-danger">Date error message</small>
+        </div>
+        <div class="mb-3">
+            <label for="comment" class="form-label">Коментар</label>
+            <textarea class="form-control" id="comment" rows="3" th:value="*{getComment()}"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="price" class="form-label">Цена</label>
+            <input th:field="*{price}" th:errorclass="is-invalid" type="number" class="form-control" id="price" th:value="*{price}">
+            <small class="invalid-feedback text-danger">Price error message</small>
+        </div>
+        <div class="mb-3">
+            <label for="repairShop" class="form-label">Изберете сервиз</label>
+            <input th:field="*{repairsShop}" th:errorclass="is-invalid" type="text" class="form-control" id="repairShop" th:value="*{repairsShop}">
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">Edit</button>
+    </form>
+    <div class="container-fluid mx-auto w-50">
+
+</div>
+<script src="/js/bootstrap.min.js"></script>
+</main>
+<footer th:replace="~{fragments/footer}"></footer>
+</body>
+</html>

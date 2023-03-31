@@ -7,7 +7,7 @@ import jakarta.validation.constraints.Size;
 
 public class UserRegistrationDto {
 
-    @Size(min = 3, max = 20)
+    @Size(min = 4, max = 20)
     @NotNull
     private String username;
 
@@ -15,11 +15,11 @@ public class UserRegistrationDto {
     @NotBlank
     private String email;
 
-    @Size(min = 3, max = 20)
+    @Size(min = 4, max = 20)
     @NotNull
     private String password;
 
-    @Size(min = 3, max = 20)
+    @Size(min = 4, max = 20)
     @NotNull
     private String confirmPassword;
 

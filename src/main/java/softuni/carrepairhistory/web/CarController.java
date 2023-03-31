@@ -17,13 +17,11 @@ import java.security.Principal;
 @Controller
 public class CarController {
 
-    private final CarRepository carRepository;
     private final CarService carService;
 
 
     @Autowired
-    public CarController(CarRepository carRepository, CarService carService) {
-        this.carRepository = carRepository;
+    public CarController(CarService carService) {
         this.carService = carService;
     }
 

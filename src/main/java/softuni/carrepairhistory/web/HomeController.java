@@ -3,7 +3,9 @@ package softuni.carrepairhistory.web;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import softuni.carrepairhistory.models.dto.CarInfoDto;
 import softuni.carrepairhistory.models.entities.UserEntity;
 import softuni.carrepairhistory.repositories.CarRepository;
@@ -20,14 +22,13 @@ public class HomeController {
     private final UserService userService;
     private final CarRepository carRepository;
     private final CarService carService;
-    private final RepairRepository repairRepository;
 
     @Autowired
-    public HomeController(UserService userService, CarRepository carRepository, CarService carService, RepairRepository repairRepository) {
+    public HomeController(UserService userService, CarRepository carRepository, CarService carService) {
         this.userService = userService;
         this.carRepository = carRepository;
         this.carService = carService;
-        this.repairRepository = repairRepository;
+
     }
 
     @GetMapping("/users/all/cars")
@@ -43,6 +44,14 @@ public class HomeController {
         model.addAttribute("carsInfo", carsInfo);
 
         return "all-cars";
+    }
+
+    @GetMapping("/remove/car/{id}")
+    public String removeCar(@PathVariable Long id){
+
+        this.carService.removeCar(id);
+
+        return "redirect:/users/all/cars";
     }
 
     @GetMapping("/")
