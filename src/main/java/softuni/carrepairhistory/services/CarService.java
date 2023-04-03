@@ -63,6 +63,7 @@ public class CarService {
     public CarInfoDto mapToCarInfo(Car car) {
 
         List<Repair> repairList = this.repairRepository.findAllByCarId(car.getId());
+
         double sum = repairList.stream().map(Repair::getPrice).mapToDouble(BigDecimal::doubleValue).sum();
 
 

@@ -3,14 +3,25 @@ package softuni.carrepairhistory.models.dto;
 import softuni.carrepairhistory.models.entities.RoleEntity;
 
 import java.util.List;
+import java.util.Set;
 
 public class UserStatusDto {
+
+    private Long id;
 
     private String username;
 
     private String email;
 
     private List<RoleEntity> roles;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getUsername() {
         return username;
@@ -38,6 +49,7 @@ public class UserStatusDto {
 
     @Override
     public String toString() {
+
         StringBuilder sb = new StringBuilder();
         for (RoleEntity role : roles) {
             sb.append(role.getRole().toString() + " ");

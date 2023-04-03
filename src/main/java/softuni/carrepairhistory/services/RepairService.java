@@ -1,5 +1,6 @@
 package softuni.carrepairhistory.services;
 
+import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import softuni.carrepairhistory.models.dto.AddRepairDto;
@@ -64,7 +65,7 @@ public class RepairService {
         RepairDetailDto repairDetailDto = new RepairDetailDto();
 
         repairDetailDto.setId(repair.getId());
-        repairDetailDto.setCarInfo(String.format(repair.getCar().getBrand() + " " + repair.getCar().getModel()));
+        repairDetailDto.setCarInfo(String.format(repair.getCar().getBrand() + " " + repair.getCar().getModel() + " - " + repair.getCar().getRegisterNumber()));
         repairDetailDto.setRepairTitle(repair.getDescription());
         repairDetailDto.setDate(repair.getDate());
         repairDetailDto.setComment(repair.getComment());
@@ -90,6 +91,7 @@ public class RepairService {
 
     public Repair getRepair(Long repairId) {
 
-        return this.repairRepository.findById(repairId).get();
+        return this.repairRepository.findById(repairId)
+                .orElseThrow(() -> new ObjectNotFoundException("Repair with ID " + repairId + " not found", repairId));
     }
 }

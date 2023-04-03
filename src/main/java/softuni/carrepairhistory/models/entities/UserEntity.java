@@ -3,7 +3,9 @@ package softuni.carrepairhistory.models.entities;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -51,13 +53,6 @@ public class UserEntity extends BaseEntity {
         this.password = password;
     }
 
-//    public List<Car> getCars() {
-//        return cars;
-//    }
-//
-//    public void setCars(List<Car> cars) {
-//        this.cars = cars;
-//    }
 
     public List<RoleEntity> getUserRoles() {
         return userRoles;

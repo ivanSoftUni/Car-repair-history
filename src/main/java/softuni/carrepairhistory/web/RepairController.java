@@ -2,16 +2,15 @@ package softuni.carrepairhistory.web;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import softuni.carrepairhistory.models.dto.AddRepairDto;
-import softuni.carrepairhistory.models.dto.EditRepairDto;
 import softuni.carrepairhistory.models.dto.RepairDetailDto;
 import softuni.carrepairhistory.models.entities.Car;
-import softuni.carrepairhistory.models.entities.Repair;
 import softuni.carrepairhistory.models.entities.UserEntity;
 import softuni.carrepairhistory.models.entities.VehiclesRepairsShop;
 import softuni.carrepairhistory.repositories.*;
@@ -19,7 +18,6 @@ import softuni.carrepairhistory.services.RepairService;
 
 import java.security.Principal;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class RepairController {
@@ -48,11 +46,6 @@ public class RepairController {
     @ModelAttribute("addRepairDto")
     public AddRepairDto initForm() {
         return new AddRepairDto();
-    }
-
-    @ModelAttribute("editRepairDto")
-    public EditRepairDto initEditForm() {
-        return new EditRepairDto();
     }
 
 
@@ -90,9 +83,10 @@ public class RepairController {
     @GetMapping("/repair/details")
     public String getDetails(Model model, Principal authenticatedPrincipal) {
 
-        Optional<UserEntity> user = userRepository.findByUsername(authenticatedPrincipal.getName());
+        UserEntity user = userRepository.findByUsername(authenticatedPrincipal.getName())
+                .orElseThrow(() -> new UsernameNotFoundException("User with username: " + authenticatedPrincipal.getName() + " not found."));
 
-        List<RepairDetailDto> repairsDetails = this.repairRepository.findAllByUserId(user.get().getId())
+        List<RepairDetailDto> repairsDetails = this.repairRepository.findAllByUserId(user.getId())
                 .stream()
                 .map(repairService::mapToRepairDetail)
                 .toList();
@@ -110,20 +104,4 @@ public class RepairController {
         return "redirect:/repair/details";
     }
 
-    @PostMapping("/repair/edit/{id}")
-    public String editRepair(@PathVariable Long id, Model model) {
-
-        Repair repair = this.repairService.getRepair(id);
-        model.addAttribute("repair", repair);
-
-
-        return "redirect:/repair/details";
-    }
-
-    @GetMapping("/repair/edit/{id}")
-    public String updateRepair(@PathVariable Long id, Model model) {
-
-        model.addAttribute("editRepairDto", this.repairService.getRepair(id));
-        return "edit-repair";
-    }
 }

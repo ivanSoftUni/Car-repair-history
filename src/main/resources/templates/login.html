@@ -28,10 +28,14 @@
             <input type="password" class="form-control" id="password" name="password" required minlength="4"
                    maxlength="20"/>
         </div>
-
-<!--        <th:block th:if="${#fields.hasErrors()}">-->
-<!--            <p class="errors alert alert-danger">Incorrect username or password!</p>-->
-<!--        </th:block>-->
+        <div th:if="${param}" class="alert-danger">
+            <p>
+                Incorrect username or password!
+            </p>
+        </div>
+        <!--        <th:block th:if="${#fields.hasErrors()}">-->
+        <!--            <p class="errors alert alert-danger">Incorrect username or password!</p>-->
+        <!--        </th:block>-->
 
         <div class="button-holder d-flex justify-content-center">
             <button type="submit" class="btn btn-warning  mb-3">ВХОД</button>

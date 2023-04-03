@@ -1,12 +1,14 @@
 package softuni.carrepairhistory.services;
 
 
+import org.hibernate.ObjectNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import softuni.carrepairhistory.models.dto.UserRegistrationDto;
 import softuni.carrepairhistory.models.dto.UserStatusDto;
 import softuni.carrepairhistory.models.entities.UserEntity;
@@ -17,6 +19,7 @@ import softuni.carrepairhistory.repositories.UserRepository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class UserService {
@@ -104,5 +107,26 @@ public class UserService {
         List<UserStatusDto> allUsers = userEntityList.stream().map(user -> modelMapper.map(user, UserStatusDto.class)).toList();
 
         return allUsers;
+    }
+
+    @Transactional
+    public void changeAdminsRole(Long id) {
+
+        UserEntity user = this.userRepository.findById(id)
+                .orElseThrow(() -> new ObjectNotFoundException("User with ID " + id + " not found", id));
+
+        RoleEntity userRole = this.roleRepository.findByRole(UserRoleEnum.ADMIN);
+
+        List<RoleEntity> userRoles = user.getUserRoles();
+        RoleEntity roleEntity = userRoles.stream().filter(u -> u.getRole().equals(userRole.getRole())).findFirst().orElse(null);
+
+        if (roleEntity != null) {
+            userRoles.remove(userRole);
+        } else {
+            userRoles.add(userRole);
+        }
+
+        this.userRepository.save(user);
+
     }
 }
