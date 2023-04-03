@@ -118,6 +118,7 @@ public class UserService {
         RoleEntity userRole = this.roleRepository.findByRole(UserRoleEnum.ADMIN);
 
         List<RoleEntity> userRoles = user.getUserRoles();
+
         RoleEntity roleEntity = userRoles.stream().filter(u -> u.getRole().equals(userRole.getRole())).findFirst().orElse(null);
 
         if (roleEntity != null) {
