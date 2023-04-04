@@ -8,30 +8,33 @@
 <header th:replace="~{fragments/navbar::navbar}"></header>
 
 <h1 class="text-center text-white">Всички ремонти</h1>
-<section class="details-page">
+
+<div class="details-page rounded" >
     <div class="row">
-        <div class="row-cols-md-4">
-            <div class="card details-card">
-                <div class="card-body details-card-text" th:each="repair : ${repairsDetails}">
+        <div class="cols-md-4" th:each="repair : ${repairsDetails}">
+            <div class="card details-card ">
+                <div class="card-body details-card-text">
                     <h2 class="card-title text-black" th:text="|Ремонт: |"></h2>
-                    <h2 class="card-title text-dark" th:text="${repair.getRepairTitle()}"></h2>
+                    <h2 class="card-subtitle mb-2" th:text="${repair.getRepairTitle()}"></h2>
 
                     <h3 class="card-subtitle mb-2 text-dark" th:text="|Кола: |"></h3>
-                    <h3 class="card-subtitle mb-2 text-muted" th:text="${repair.getCarInfo()}"></h3>
+                    <h3 class="card-subtitle mb-2 " th:text="${repair.getCarInfo()}"></h3>
 
                     <h3 class="card-subtitle mb-2 text-dark" th:text="|Дата: |"></h3>
-                    <h3 class="card-subtitle mb-2 text-muted" th:text="${repair.getDate().toString()}"></h3>
+                    <h3 class="card-subtitle mb-2 " th:text="${repair.getDate().toString()}"></h3>
 
                     <h3 class="card-subtitle mb-2 text-dark" th:text="|Цена: |"></h3>
-                    <h3 class="card-subtitle mb-2 text-muted" th:text="|${repair.getPrice()} лв.|"></h3>
+                    <h3 class="card-subtitle mb-2 " th:text="|${repair.getPrice()} лв.|"></h3>
 
                     <h3 class="card-subtitle mb-2 text-dark" th:text="|Сервиз: |"></h3>
-                    <h3 class="card-subtitle mb-2 text-muted" th:text="${repair.getServiceShopName()}"></h3>
+                    <h3 class="card-subtitle mb-2 " th:text="${repair.getServiceShopName()}"></h3>
 
-                    <p class="card-text" th:text="|Коментар: ${repair.getComment().toString()}|"></p>
-                    <div class="col-md-4">
+                    <h4 class="card-text text-dark" th:text="|Коментар: |"></h4>
+                    <h5 class="card-subtitle mb-2" th:text="${repair.getComment().toString()}"></h5>
+
+                    <div class="col-md-4 text-center">
                         <div class="card details-card-image">
-                            <img src="/images/car.jpg" class="card-img-top" alt="error">
+                            <img src="/images/car.jpg" class="card-img-top text-center" alt="error">
                         </div>
                     </div>
                     <br>
@@ -39,13 +42,12 @@
                         <a th:href="@{/remove/{id}(id = ${repair.getId()})}"
                            class="btn btn-danger btn-delete">Delete</a>
                     </div>
-                    <hr class="bg-white w-100"/>
                 </div>
 
             </div>
         </div>
     </div>
-</section>
+</div>
 
 </body>
 

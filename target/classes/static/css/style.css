@@ -6,7 +6,7 @@
     background-color: #e9ecef;
 }
 
-.bg-nav{
+.bg-nav {
     background-color: rgba(1, 141, 8, 0);
 }
 
@@ -53,9 +53,16 @@ footer {
     position: sticky;
     left: 0;
 }
-.card-body{
-    background-color: lightgray;
+
+.card-body {
+    background-color: #f0f0f0;
+    border: 3px solid #084298;
+    text-align: center;
 }
-.table{
-    background-color: darkgray;
+
+.table {
+    background-color: transparent;
+}
+.card-subtitle{
+    color: #6c757d;
 }

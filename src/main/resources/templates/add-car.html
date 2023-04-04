@@ -21,7 +21,7 @@
                            id="brand" name="brand"
                            th:field="*{brand}"
                            th:errorclass="is-invalid"/>
-                    <small class="invalid-feedback text-danger">Brand error message</small>
+                    <small class="invalid-feedback text-danger">Моля въведете коректна марка</small>
                 </div>
 
                 <div class="col-md-6 mb-3">
@@ -30,7 +30,7 @@
                            id="model" name="model"
                            th:field="*{model}"
                            th:errorclass="is-invalid"/>
-                    <small class="invalid-feedback text-danger">Model error message</small>
+                    <small class="invalid-feedback text-danger">Моля въведете коректен модел</small>
                 </div>
 
                 <div class="col-md-6 mb-3">
@@ -40,7 +40,7 @@
                            placeholder="Година на производство"
                            th:field="*{madeYear}"
                            th:errorclass="is-invalid"/>
-                    <small class="invalid-feedback text-danger">Year error message</small>
+                    <small class="invalid-feedback text-danger">Моля въведете коректна година</small>
                 </div>
 
                 <div class="col-md-6 mb-3">
@@ -49,7 +49,7 @@
                            th:field="*{horsePower}"
                            th:errorclass="is-invalid"/>
                     <small
-                            class="invalid-feedback text-danger">Horse Power error message</small>
+                            class="invalid-feedback text-danger">Моля въведете коректни конски сили</small>
                 </div>
 
                 <div class="col-md-6 mb-3">
@@ -57,14 +57,14 @@
                     <input type="text" class="form-control" id="engine" name="engine" placeholder="Въведете кубатура на двигателя"
                            th:field="*{engine}"
                            th:errorclass="is-invalid"/>
-                    <small class="invalid-feedback text-danger">Engine error message</small>
+                    <small class="invalid-feedback text-danger">Моля въведете коректна кубатура на двигателя</small>
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="registerNumber" class="h4 mb-2">Регистрационен номер</label>
                     <input type="text" class="form-control" id="registerNumber" name="registerNumber"
                            th:field="*{registerNumber}"
                            th:errorclass="is-invalid"/>
-                    <small class="invalid-feedback text-danger">Register Number error message</small>
+                    <small class="invalid-feedback text-danger">Моля въведете коректен регистрационен номер</small>
                 </div>
 
                 <div class="col-md-6 mb-3">
@@ -72,13 +72,11 @@
                     <select class="browser-default custom-select" id="fuel" name="fuel"
                             th:field="*{fuel}"
                             th:errorclass="is-invalid">
-                        <option value="">Select Fuel</option>
                         <option value="DIESEL">Дизел</option>
                         <option value="GASOLINE">Бензин</option>
                         <option value="LPG">Газ</option>
                         <option value="METHANE">Метан</option>
                     </select>
-
                     <small class="invalid-feedback text-danger">Fuel error message</small>
                 </div>
 

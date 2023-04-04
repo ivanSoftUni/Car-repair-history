@@ -1,8 +1,6 @@
 package softuni.carrepairhistory.models.dto;
 
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.PastOrPresent;
-import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -11,7 +9,8 @@ public class AddRepairDto {
 
     @NotNull
     private Long carId;
-    @NotNull
+    @NotEmpty
+    @Size(min = 5, max = 30)
     private String description;
     @NotNull
     @PastOrPresent()
