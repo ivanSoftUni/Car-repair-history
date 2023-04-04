@@ -10,6 +10,6 @@ public class ErrorController {
     @GetMapping("/error")
     public String getErrorPage() {
 
-        return "404";
+        return "error";
     }
 }
