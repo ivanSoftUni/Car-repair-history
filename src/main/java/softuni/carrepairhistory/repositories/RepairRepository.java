@@ -8,7 +8,7 @@ import java.util.List;
 
 @Repository
 public interface RepairRepository extends JpaRepository<Repair, Long> {
-    List<Repair> findAllByUserId(Long id);
+    List<Repair> findAllByUserIdOrderByDateDesc(Long id);
 
     List<Repair> findAllByCarId(Long id);
 }

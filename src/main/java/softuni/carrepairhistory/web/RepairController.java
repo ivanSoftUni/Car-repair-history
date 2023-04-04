@@ -86,7 +86,7 @@ public class RepairController {
         UserEntity user = userRepository.findByUsername(authenticatedPrincipal.getName())
                 .orElseThrow(() -> new UsernameNotFoundException("User with username: " + authenticatedPrincipal.getName() + " not found."));
 
-        List<RepairDetailDto> repairsDetails = this.repairRepository.findAllByUserId(user.getId())
+        List<RepairDetailDto> repairsDetails = this.repairRepository.findAllByUserIdOrderByDateDesc(user.getId())
                 .stream()
                 .map(repairService::mapToRepairDetail)
                 .toList();
