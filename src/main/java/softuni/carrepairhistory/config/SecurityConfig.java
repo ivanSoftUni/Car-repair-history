@@ -27,11 +27,11 @@ public class SecurityConfig {
                 authorizeHttpRequests().
                 requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll().
                 requestMatchers("/", "/users/login", "/users/register").permitAll().
+                requestMatchers("/car/add", "/vehicle-shop/add", "/repair/add", "/repair/details", "/users/all/cars").hasRole(UserRoleEnum.USER.name()).
                 requestMatchers("/admin/users").hasRole(UserRoleEnum.ADMIN.name()).
                 anyRequest().
                 authenticated().
                 and().
-
                 formLogin().
                 loginPage("/users/login").
                 usernameParameter("username").

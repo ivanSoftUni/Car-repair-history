@@ -16,18 +16,4 @@ public class AppConfig {
         return new ModelMapper();
     }
 
-    @Bean
-    public CacheManager cacheManager() {
-        return new CacheManager() {
-            @Override
-            public Cache getCache(String name) {
-                return null;
-            }
-
-            @Override
-            public Collection<String> getCacheNames() {
-                return null;
-            }
-        };
-    }
 }

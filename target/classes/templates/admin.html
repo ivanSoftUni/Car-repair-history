@@ -24,7 +24,7 @@
                 <td th:text="${user.getUsername()}"></td>
                 <td th:text="${user.getEmail()}"></td>
                 <td th:text="${user.toString()}"></td>
-                <td>
+                <td th:if="${user.getId()!=1}">
                     <a class="btn btn-primary" th:href="@{/users/change-role/{id}(id = ${user.getId()})}">Направи/Премахни
                         АДМИН</a>
                 </td>

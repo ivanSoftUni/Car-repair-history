@@ -121,13 +121,13 @@ public class UserService {
 
         RoleEntity roleEntity = userRoles.stream().filter(u -> u.getRole().equals(userRole.getRole())).findFirst().orElse(null);
 
-        if (roleEntity != null) {
-            userRoles.remove(userRole);
-        } else {
-            userRoles.add(userRole);
+        if (id != 1) {
+            if (roleEntity != null) {
+                userRoles.remove(userRole);
+            } else {
+                userRoles.add(userRole);
+            }
         }
-
         this.userRepository.save(user);
-
     }
 }

@@ -20,23 +20,23 @@
                        th:href="@{/}">Начало</a>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link text-primary active h5 text-stroke" sec:authorize="isAuthenticated()"
+                    <a class="nav-link text-primary active h5 text-stroke" sec:authorize="hasRole('USER')"
                        th:href="@{/car/add}">Добавяне на кола</a>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link text-primary active h5 text-stroke" sec:authorize="isAuthenticated()"
+                    <a class="nav-link text-primary active h5 text-stroke" sec:authorize="hasRole('USER')"
                        th:href="@{/vehicle-shop/add}">Добавяне на сервиз</a>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link text-primary active h5 text-stroke" sec:authorize="isAuthenticated()"
+                    <a class="nav-link text-primary active h5 text-stroke" sec:authorize="hasRole('USER')"
                        th:href="@{/repair/add}">Добавяне на ремонт</a>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link text-primary active h5 text-stroke" sec:authorize="isAuthenticated()"
+                    <a class="nav-link text-primary active h5 text-stroke" sec:authorize="hasRole('USER')"
                        th:href="@{/repair/details}">Всички ремонти</a>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link text-primary active h5 text-stroke" sec:authorize="isAuthenticated()"
+                    <a class="nav-link text-primary active h5 text-stroke" sec:authorize="hasRole('USER')"
                        th:href="@{/users/all/cars}">Моите коли</a>
                 </li>
                 <li class="nav-item ">
