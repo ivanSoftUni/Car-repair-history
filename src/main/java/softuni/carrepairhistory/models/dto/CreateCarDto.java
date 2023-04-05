@@ -6,7 +6,7 @@ import jakarta.validation.constraints.*;
 public class CreateCarDto {
 
     @NotNull
-    @Size(min = 2)
+    @Size(min = 3)
     private String brand;
 
     @NotEmpty

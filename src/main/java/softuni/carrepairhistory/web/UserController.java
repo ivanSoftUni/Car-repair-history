@@ -55,7 +55,7 @@ public class UserController {
 
 
     @GetMapping("/users/login")
-    public String login() {
+    public String getLogin() {
 
         return "login";
     }

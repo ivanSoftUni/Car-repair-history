@@ -1,4 +1,3 @@
-
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
@@ -24,6 +23,13 @@ spring:
       hibernate:
         format_sql: true
     defer-datasource-initialization: true
+
+  cache:
+    type: caffeine
+    caffeine:
+      spec: maximumSize=1000,expireAfterAccess=300s
+    cache-names: myCache
+
 
 app:
   default:

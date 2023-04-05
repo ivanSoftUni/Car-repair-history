@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import softuni.carrepairhistory.models.dto.CarInfoDto;
 import softuni.carrepairhistory.models.entities.UserEntity;
 import softuni.carrepairhistory.repositories.CarRepository;
-import softuni.carrepairhistory.repositories.RepairRepository;
 import softuni.carrepairhistory.services.CarService;
 import softuni.carrepairhistory.services.UserService;
 
@@ -28,7 +27,6 @@ public class HomeController {
         this.userService = userService;
         this.carRepository = carRepository;
         this.carService = carService;
-
     }
 
     @GetMapping("/users/all/cars")
@@ -46,8 +44,8 @@ public class HomeController {
         return "all-cars";
     }
 
-    @GetMapping("/remove/car/{id}")
-    public String removeCar(@PathVariable Long id){
+    @GetMapping("/delete/car/{id}")
+    public String removeCar(@PathVariable Long id) {
 
         this.carService.removeCar(id);
 
@@ -59,4 +57,5 @@ public class HomeController {
 
         return "index";
     }
+
 }

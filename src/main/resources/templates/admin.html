@@ -8,27 +8,30 @@
 <body>
 <header th:replace="~{fragments/navbar::navbar}"></header>
 <div class="container-fluid">
-    <h1 class="text-center">Административен панел</h1>
-    <table class="table table-bordered table-striped">
-        <thead>
-        <tr class="mx-auto text-center">
-            <th>Username</th>
-            <th>Email</th>
-            <th>Roles</th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody >
-        <tr class="mx-auto text-center" th:each="user : ${allUsers}">
-            <td th:text="${user.getUsername()}"></td>
-            <td th:text="${user.getEmail()}"></td>
-            <td th:text="${user.toString()}"></td>
-            <td>
-                <a class="btn btn-primary" th:href="@{/users/change-role/{id}(id = ${user.getId()})}">Направи/Премахни АДМИН</a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+    <h1 class="text-center text-white fw-bold">Административен панел</h1>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead>
+            <tr class="text-center border-dark">
+                <th>Username</th>
+                <th>Email</th>
+                <th>Roles</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="text-center border-dark" th:each="user : ${allUsers}">
+                <td th:text="${user.getUsername()}"></td>
+                <td th:text="${user.getEmail()}"></td>
+                <td th:text="${user.toString()}"></td>
+                <td>
+                    <a class="btn btn-primary" th:href="@{/users/change-role/{id}(id = ${user.getId()})}">Направи/Премахни
+                        АДМИН</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 <footer th:replace="~{fragments/footer}"></footer>
 </body>

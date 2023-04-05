@@ -4,6 +4,7 @@
     <option name="state">
       <map>
         <entry key="file://$PROJECT_DIR$/src/main/resources/templates/add-repair.html" value="file://$PROJECT_DIR$/src/main/resources/templates" />
+        <entry key="file://$PROJECT_DIR$/src/main/resources/templates/error.html" value="file://$PROJECT_DIR$/src/main/resources/templates" />
       </map>
     </option>
   </component>

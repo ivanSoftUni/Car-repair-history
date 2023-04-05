@@ -7,7 +7,6 @@
 <header th:replace="~{fragments/navbar::navbar}"></header>
 <main>
     <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Добавяне на кола</span></h1>
-    <hr class="hr-3 w-25 bg-white"/>
 
     <div class="container-fluid mx-auto w-50">
         <form class="bg-blur rounded" th:method="post"
@@ -20,7 +19,8 @@
                     <input type="text" class="form-control"
                            id="brand" name="brand"
                            th:field="*{brand}"
-                           th:errorclass="is-invalid"/>
+                           th:errorclass="is-invalid"
+                           required minlength="3"/>
                     <small class="invalid-feedback text-danger">Моля въведете коректна марка</small>
                 </div>
 
@@ -29,7 +29,8 @@
                     <input type="text" class="form-control"
                            id="model" name="model"
                            th:field="*{model}"
-                           th:errorclass="is-invalid"/>
+                           th:errorclass="is-invalid"
+                           required/>
                     <small class="invalid-feedback text-danger">Моля въведете коректен модел</small>
                 </div>
 
@@ -39,7 +40,8 @@
                            name="year"
                            placeholder="Година на производство"
                            th:field="*{madeYear}"
-                           th:errorclass="is-invalid"/>
+                           th:errorclass="is-invalid"
+                           required min="2"/>
                     <small class="invalid-feedback text-danger">Моля въведете коректна година</small>
                 </div>
 
@@ -47,14 +49,15 @@
                     <label for="horsePower" class="h4 mb-2">Конски сили</label>
                     <input type="number" class="form-control" id="horsePower" name="horsePower"
                            th:field="*{horsePower}"
-                           th:errorclass="is-invalid"/>
-                    <small
-                            class="invalid-feedback text-danger">Моля въведете коректни конски сили</small>
+                           th:errorclass="is-invalid"
+                           required/>
+                    <small class="invalid-feedback text-danger">Моля въведете коректни конски сили</small>
                 </div>
 
                 <div class="col-md-6 mb-3">
                     <label for="engine" class="h4 mb-2">Двигател</label>
-                    <input type="text" class="form-control" id="engine" name="engine" placeholder="Въведете кубатура на двигателя"
+                    <input type="text" class="form-control" id="engine" name="engine"
+                           placeholder="Въведете кубатура на двигателя"
                            th:field="*{engine}"
                            th:errorclass="is-invalid"/>
                     <small class="invalid-feedback text-danger">Моля въведете коректна кубатура на двигателя</small>
@@ -63,7 +66,8 @@
                     <label for="registerNumber" class="h4 mb-2">Регистрационен номер</label>
                     <input type="text" class="form-control" id="registerNumber" name="registerNumber"
                            th:field="*{registerNumber}"
-                           th:errorclass="is-invalid"/>
+                           th:errorclass="is-invalid"
+                           required minlength="4" maxlength="10"/>
                     <small class="invalid-feedback text-danger">Моля въведете коректен регистрационен номер</small>
                 </div>
 
