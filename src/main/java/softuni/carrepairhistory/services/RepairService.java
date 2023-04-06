@@ -76,10 +76,10 @@ public class RepairService {
         return repairDetailDto;
     }
 
-    public void removeRepair(Long id) {
+    public void removeRepair(Long id) throws Exception {
 
-        Optional<Repair> repair = this.repairRepository.findById(id);
-        if (repair.isPresent()) {
+        Repair repair = this.repairRepository.findById(id).orElseThrow(Exception::new);
+        if (repair != null) {
             this.repairRepository.deleteById(id);
         }
     }
@@ -89,9 +89,4 @@ public class RepairService {
         return this.repairRepository.findAllByCarId(carId);
     }
 
-    public Repair getRepair(Long repairId) {
-
-        return this.repairRepository.findById(repairId)
-                .orElseThrow(() -> new ObjectNotFoundException("Repair with ID " + repairId + " not found", repairId));
-    }
 }

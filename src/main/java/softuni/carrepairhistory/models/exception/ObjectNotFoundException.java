@@ -1,5 +1,9 @@
 package softuni.carrepairhistory.models.exception;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
+@ResponseStatus(value = HttpStatus.NOT_FOUND, reason = "not found")
 public class ObjectNotFoundException extends RuntimeException {
     private final Long objectId;
 
@@ -7,7 +11,7 @@ public class ObjectNotFoundException extends RuntimeException {
 
     public ObjectNotFoundException(Long objectId, String objectType) {
 
-        super("Object with ID " + objectId + " and type" + objectType + " not found");
+//        super("Object with ID " + objectId + " and type" + objectType + " not found");
 
         this.objectId = objectId;
         this.objectType = objectType;

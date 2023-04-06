@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Repair History</title>
+    <title>Not found error page</title>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="icon" type="image/x-icon" th:href="@{/images/favicon.ico}"/>
@@ -13,14 +10,14 @@
     <link rel="stylesheet" type="text/css" href="/css/style-error-page.css"/>
 </head>
 <body>
-<!--<header th:replace="~{fragments/navbar::navbar}"></header>-->
-
 <div class="container-fluid text-center">
-    <h2 class="text-center text-black mt-5"> Оооппсс... нещо се обърка :)</h2>
+
+    <h1 class="text-center fw-bold">Съжалявам, <em th:text="${objectType}"/> с ID <em th:text="${objectId}"/> не е
+        намерен!</h1>
 
     <a th:href="@{/}">Върни се в началото</a>
-</div>
 
+</div>
 <footer th:replace="~{/fragments/footer}"></footer>
 </body>
 </html>

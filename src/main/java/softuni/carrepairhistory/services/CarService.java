@@ -1,5 +1,6 @@
 package softuni.carrepairhistory.services;
 
+import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import softuni.carrepairhistory.models.dto.CarInfoDto;
@@ -80,10 +81,10 @@ public class CarService {
         return carInfoDto;
     }
 
-    public void removeCar(Long id) {
+    public void removeCar(Long id) throws Exception {
 
-        Optional<Car> car = this.carRepository.findById(id);
-        if (car.isPresent()) {
+        Car car = this.carRepository.findById(id).orElseThrow(Exception::new);
+        if (car != null) {
             List<Repair> allRepairsByCarId = this.repairService.getAllRepairsByCarId(id);
             for (Repair repair : allRepairsByCarId) {
                 repairService.removeRepair(repair.getId());
@@ -92,4 +93,5 @@ public class CarService {
 
         }
     }
+
 }

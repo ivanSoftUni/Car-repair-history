@@ -2,17 +2,20 @@ package softuni.carrepairhistory.web;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import softuni.carrepairhistory.models.dto.AddRepairDto;
 import softuni.carrepairhistory.models.dto.RepairDetailDto;
 import softuni.carrepairhistory.models.entities.Car;
 import softuni.carrepairhistory.models.entities.UserEntity;
 import softuni.carrepairhistory.models.entities.VehiclesRepairsShop;
+import softuni.carrepairhistory.models.exception.ObjectNotFoundException;
 import softuni.carrepairhistory.repositories.*;
 import softuni.carrepairhistory.services.RepairService;
 
@@ -99,9 +102,26 @@ public class RepairController {
     @GetMapping("/remove/{id}")
     public String removeRepair(@PathVariable Long id) {
 
-        this.repairService.removeRepair(id);
+        try {
+
+            this.repairService.removeRepair(id);
+
+        } catch (Exception e) {
+
+            throw new ObjectNotFoundException(id, "Ремонт");
+        }
 
         return "redirect:/repair/details";
     }
 
+    @ResponseStatus(value = HttpStatus.NOT_FOUND)
+    @ExceptionHandler(ObjectNotFoundException.class)
+    public ModelAndView onRepairNotFound(ObjectNotFoundException notFoundException) {
+        ModelAndView modelAndView = new ModelAndView("not-found-error");
+
+        modelAndView.addObject("objectId", notFoundException.getObjectId());
+        modelAndView.addObject("objectType", notFoundException.getObjectType());
+
+        return modelAndView;
+    }
 }
