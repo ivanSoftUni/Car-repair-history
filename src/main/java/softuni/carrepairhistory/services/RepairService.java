@@ -1,6 +1,5 @@
 package softuni.carrepairhistory.services;
 
-import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import softuni.carrepairhistory.models.dto.AddRepairDto;
@@ -12,6 +11,7 @@ import softuni.carrepairhistory.repositories.CarRepository;
 import softuni.carrepairhistory.repositories.RepairRepository;
 import softuni.carrepairhistory.repositories.VehiclesRepairsShopRepository;
 
+import java.math.BigDecimal;
 import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
