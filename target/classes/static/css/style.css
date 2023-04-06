@@ -59,7 +59,8 @@ footer {
 }
 
 .card-body {
-    background-color: #f0f0f0;
+    background: lightgrey;
+    background-size: cover;
     border: 3px solid greenyellow;
     text-align: center;
 }
@@ -71,4 +72,3 @@ footer {
 .card-subtitle {
     color: #6c757d;
 }
-

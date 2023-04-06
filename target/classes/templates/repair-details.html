@@ -15,20 +15,20 @@
         <div class="col" th:each="repair : ${repairsDetails}">
             <div class="card details-card">
                 <div class="card-body details-card-text">
-                    <h2 class="card-title text-black fw-bold" th:text="|Ремонт: |"></h2>
-                    <h2 class="card-subtitle mb-2" th:text="${repair.getRepairTitle()}"></h2>
+                    <h4 class="card-title text-black fw-bold" th:text="|Ремонт: |"></h4>
+                    <h5 class="card-subtitle mb-2" th:text="${repair.getRepairTitle()}"></h5>
 
-                    <h3 class="card-subtitle mb-2 text-dark fw-bold" th:text="|Кола: |"></h3>
-                    <h3 class="card-subtitle mb-2 " th:text="${repair.getCarInfo()}"></h3>
+                    <h4 class="card-subtitle mb-2 text-dark fw-bold" th:text="|Кола: |"></h4>
+                    <h5 class="card-subtitle mb-2 " th:text="${repair.getCarInfo()}"></h5>
 
-                    <h3 class="card-subtitle mb-2 text-dark fw-bold" th:text="|Дата: |"></h3>
-                    <h3 class="card-subtitle mb-2 " th:text="${repair.getDate().toString()}"></h3>
+                    <h4 class="card-subtitle mb-2 text-dark fw-bold" th:text="|Дата: |"></h4>
+                    <h5 class="card-subtitle mb-2 " th:text="${repair.getDate().toString()}"></h5>
 
-                    <h3 class="card-subtitle mb-2 text-dark fw-bold" th:text="|Цена: |"></h3>
-                    <h3 class="card-subtitle mb-2 " th:text="|${repair.getPrice()} лв.|"></h3>
+                    <h4 class="card-subtitle mb-2 text-dark fw-bold" th:text="|Цена: |"></h4>
+                    <h5 class="card-subtitle mb-2 " th:text="|${repair.getPrice()} лв.|"></h5>
 
-                    <h3 class="card-subtitle mb-2 text-dark fw-bold" th:text="|Сервиз: |"></h3>
-                    <h3 class="card-subtitle mb-2 " th:text="${repair.getServiceShopName()}"></h3>
+                    <h4 class="card-subtitle mb-2 text-dark fw-bold" th:text="|Сервиз: |"></h4>
+                    <h5 class="card-subtitle mb-2 " th:text="${repair.getServiceShopName()}"></h5>
 
                     <h4 class="card-text text-dark fw-bold" th:text="|Коментар: |"></h4>
                     <h5 class="card-subtitle mb-2" th:text="${repair.getComment().toString()}"></h5>
