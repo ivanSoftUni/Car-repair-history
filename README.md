@@ -3,10 +3,10 @@
 
 Използвам следните технологии:
 - Spring Boot 3
-- Spring Security 6
+- Spring Security 
 - Spring JPA
 - MySQL
 - Thymeleaf 
-- Thymeleaf Security 6
+- Thymeleaf Security 
 - HTML/CSS
 - Bootstrap 5
