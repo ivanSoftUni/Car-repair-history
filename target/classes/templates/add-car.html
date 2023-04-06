@@ -6,13 +6,15 @@
 <body>
 <header th:replace="~{fragments/navbar::navbar}"></header>
 <main>
-    <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Добавяне на кола</span></h1>
+<!--    <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Добавяне на кола</span></h1>-->
 
     <div class="container-fluid mx-auto w-50">
         <form class="bg-blur rounded" th:method="post"
               th:action="@{/car/add}"
               th:object="${createCarDto}">
+            <h1 class="text-center md-2">Добавяне на кола</h1>
 
+            <br>
             <div class="row justify-content-center">
                 <div class="col-md-6 mb-3">
                     <label for="brand" class="h4 mb-2 text-white">Марка</label>
@@ -20,7 +22,7 @@
                            id="brand" name="brand"
                            th:field="*{brand}"
                            th:errorclass="is-invalid"
-                           required minlength="3"/>
+                           required />
                     <small class="invalid-feedback text-danger">Моля въведете коректна марка</small>
                 </div>
 
@@ -41,7 +43,7 @@
                            placeholder="Година на производство"
                            th:field="*{madeYear}"
                            th:errorclass="is-invalid"
-                           required min="2"/>
+                           required />
                     <small class="invalid-feedback text-danger">Моля въведете коректна година</small>
                 </div>
 
@@ -67,7 +69,7 @@
                     <input type="text" class="form-control" id="registerNumber" name="registerNumber"
                            th:field="*{registerNumber}"
                            th:errorclass="is-invalid"
-                           required minlength="4" maxlength="10"/>
+                           required/>
                     <small class="invalid-feedback text-danger">Моля въведете коректен регистрационен номер</small>
                 </div>
 

@@ -19,6 +19,10 @@ body {
     margin-bottom: 5rem;
 }
 
+.navbar-nav .nav-link:hover {
+    color: yellow;
+}
+
 textarea {
     resize: none;
 }
@@ -63,7 +67,8 @@ footer {
 .table {
     background-color: lavender;
 }
-.card-subtitle{
+
+.card-subtitle {
     color: #6c757d;
 }
 

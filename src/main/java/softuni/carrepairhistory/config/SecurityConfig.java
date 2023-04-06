@@ -38,8 +38,10 @@ public class SecurityConfig {
                 and().
                 formLogin().
                 loginPage("/users/login").
-                usernameParameter("username").
-                passwordParameter("password").
+                failureUrl("/users/login-error").
+                permitAll().
+                usernameParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY).
+                passwordParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_PASSWORD_KEY).
                 defaultSuccessUrl("/", true).
                 failureForwardUrl("/users/login-error").
                 and().

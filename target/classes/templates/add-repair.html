@@ -6,54 +6,59 @@
 <body>
 <header th:replace="~{fragments/navbar::navbar}"></header>
 <main>
-<div class="container-fluid mx-auto w-50">
-    <form class="mx-auto w-50 bg-blur rounded"
-          th:method="post"
-          th:action="@{/repair/add}"
-          th:object="${addRepairDto}">
-        <h1 class="text-center mt-2">Добавяне на ремонт</h1>
+    <div class="container-fluid mx-auto w-50">
+        <form class="bg-blur rounded"
+              th:method="post"
+              th:action="@{/repair/add}"
+              th:object="${addRepairDto}">
+            <h1 class="text-center mt-2">Добавяне на ремонт</h1>
 
-        <br>
-        <div class="mb-3">
-            <label for="car" class="form-label">Избери кола</label>
-            <select class="form-select" id="car" th:field="*{carId}">
-                <option th:each="car : ${cars}"  th:value="${car.getId()}" th:text="|${car.getBrand()} - ${car.getModel()}|"></option>
-            </select>
-        </div>
-        <div class="mb-3">
-            <label for="description" class="form-label">Описание</label>
-            <input th:field="*{description}" th:errorclass="is-invalid" type="text" class="form-control" id="description" placeholder="Въведете описание">
-            <small class="invalid-feedback text-danger">Описанието трябва да е между 5 и 30 символа</small>
-        </div>
-        <div class="mb-3">
-            <label for="date" class="form-label">Дата</label>
-            <input th:field="*{date}" th:errorclass="is-invalid"
-                   type="date"
-                   class="form-control"
-                   id="date" placeholder="Въведете дата">
-            <small class="invalid-feedback text-danger">Моля изберете коректна дата</small>
-        </div>
-        <div class="mb-3">
-            <label for="comment" class="form-label">Коментар</label>
-            <textarea class="form-control" th:field="*{comment}" id="comment" rows="3"></textarea>
-        </div>
-        <div class="mb-3">
-            <label for="price" class="form-label">Цена</label>
-            <input th:field="*{price}" th:errorclass="is-invalid" type="number" class="form-control" id="price" placeholder="Въведете цена">
-            <small class="invalid-feedback text-danger">Цената трябва да е > 0 !</small>
-        </div>
-        <div class="mb-3">
-            <label for="repairShop" class="form-label">Изберете сервиз</label>
-            <select class="form-select" id="repairShop" th:field="*{vehicleShopId}">
-                <option th:each="vehicleShop : ${vehicleShops}" th:value="${vehicleShop.getId()}"
-                th:text="|${vehicleShop.getName()} - ${vehicleShop.getCity()}|"></option>
-            </select>
-        </div>
-        <button type="submit" class="btn btn-primary mt-3">Добавяне</button>
-    </form>
+            <br>
+            <div class="row justify-content-center">
+                <div class="col-md-6 mb-3">
+                    <label for="car" class="form-label">Избери кола</label>
+                    <select class="form-select" id="car" th:field="*{carId}">
+                        <option th:each="car : ${cars}" th:value="${car.getId()}"
+                                th:text="|${car.getBrand()} - ${car.getModel()}|"></option>
+                    </select>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="description" class="form-label">Описание</label>
+                    <input th:field="*{description}" th:errorclass="is-invalid" type="text" class="form-control"
+                           id="description" placeholder="Въведете описание">
+                    <small class="invalid-feedback text-danger">Описанието трябва да е между 5 и 30 символа</small>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="date" class="form-label">Дата</label>
+                    <input th:field="*{date}" th:errorclass="is-invalid"
+                           type="date"
+                           class="form-control"
+                           id="date" placeholder="Въведете дата">
+                    <small class="invalid-feedback text-danger">Моля изберете коректна дата</small>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="comment" class="form-label">Коментар</label>
+                    <textarea class="form-control" th:field="*{comment}" id="comment" rows="3"></textarea>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="price" class="form-label">Цена</label>
+                    <input th:field="*{price}" th:errorclass="is-invalid" type="number" class="form-control" id="price"
+                           placeholder="Въведете цена">
+                    <small class="invalid-feedback text-danger">Цената трябва да е > 0 !</small>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="repairShop" class="form-label">Изберете сервиз</label>
+                    <select class="form-select" id="repairShop" th:field="*{vehicleShopId}">
+                        <option th:each="vehicleShop : ${vehicleShops}" th:value="${vehicleShop.getId()}"
+                                th:text="|${vehicleShop.getName()} - ${vehicleShop.getCity()}|"></option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary mt-3">Добавяне</button>
+            </div>
+        </form>
 
-</div>
-<script src="/js/bootstrap.min.js"></script>
+    </div>
+    <script src="/js/bootstrap.min.js"></script>
 </main>
 <footer th:replace="~{fragments/footer}"></footer>
 </body>
