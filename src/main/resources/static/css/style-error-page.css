@@ -1,5 +1,9 @@
 body{
-    background-color: #31d2f2;
+    background-image: url(../images/error2.jpg);
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+    margin-bottom: 5rem;
 }
 a{
     text-align: center;
