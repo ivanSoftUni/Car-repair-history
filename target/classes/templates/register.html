@@ -21,8 +21,8 @@
                 </div>
                 <input th:field="*{username}" th:errorclass="'is-invalid alert-danger'" type="text" class="form-control"
                        id="username" name="username"/>
-                <small th:if="${#fields.hasErrors('username')}"
-                       class="invalid-feedback text-danger">Трябва да е между 3 и 20 символа</small>
+                <small th:if="${#fields.hasErrors('username')}" class="invalid-feedback text-danger">Трябва да е между 3 и 20 символа</small>
+                <small th:if="${existUsername}" class="text-danger"><b>Потребителското име е заето!</b></small>
             </div>
 
             <div class="form-group">
@@ -31,8 +31,9 @@
                 </div>
                 <input th:field="*{email}" th:errorclass="'is-invalid alert-danger'" type="email" class="form-control"
                        id="email" name="email"/>
-                <small th:if="${#fields.hasErrors('email')}"
-                       class="invalid-feedback text-danger">Въведете валиден имейл адрес!</small>
+                <small th:if="${#fields.hasErrors('email')}" class="invalid-feedback text-danger">Въведете валиден имейл адрес!</small>
+                <small th:if="${existEmail}" class="text-danger"><b>Имейл адреса се използва от друг потребител!</b></small>
+
             </div>
 
             <div class="form-group">

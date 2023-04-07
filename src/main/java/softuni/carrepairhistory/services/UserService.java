@@ -72,12 +72,15 @@ public class UserService {
             return false;
         }
 
-        Optional<UserEntity> byUsername = this.userRepository.findByUsername(userRegistrationDto.getUsername());
+//        Optional<UserEntity> byUsername = this.userRepository.findByUsername(userRegistrationDto.getUsername());
         Optional<UserEntity> byEmail = this.userRepository.findByEmail(userRegistrationDto.getEmail());
 
-        if (byUsername.isPresent() || byEmail.isPresent()) {
+        if (existUserByUsername(userRegistrationDto.getUsername()) ||
+                existUserByEmail(userRegistrationDto.getEmail())) {
+
             return false;
         }
+
         RoleEntity userRole = this.roleRepository.findByName(UserRoleEnum.USER);
 
         UserEntity newUser = new UserEntity();
@@ -90,6 +93,14 @@ public class UserService {
         this.userRepository.save(newUser);
 
         return true;
+    }
+
+    public boolean existUserByUsername(String username) {
+        return this.userRepository.findByUsername(username).isPresent();
+    }
+
+    public boolean existUserByEmail(String email) {
+        return this.userRepository.findByEmail(email).isPresent();
     }
 
 

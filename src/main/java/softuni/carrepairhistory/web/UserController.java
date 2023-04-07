@@ -47,6 +47,13 @@ public class UserController {
             redirectAttributes.addFlashAttribute(
                     "org.springframework.validation.BindingResult.userRegistrationDto", bindingResult);
 
+            if (userService.existUserByUsername(userRegistrationDto.getUsername())) {
+                redirectAttributes.addFlashAttribute("existUsername", true);
+            }
+            if (userService.existUserByEmail(userRegistrationDto.getEmail())) {
+                redirectAttributes.addFlashAttribute("existEmail", true);
+            }
+
             return "redirect:/users/register";
         }
 
@@ -70,7 +77,6 @@ public class UserController {
 
         return "redirect:login";
     }
-
 
 
 }
