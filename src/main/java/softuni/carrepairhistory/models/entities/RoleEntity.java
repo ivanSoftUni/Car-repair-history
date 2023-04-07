@@ -9,7 +9,7 @@ public class RoleEntity extends BaseEntity {
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    private UserRoleEnum role;
+    private UserRoleEnum name;
 
     public RoleEntity(UserRoleEnum user) {
 
@@ -19,12 +19,12 @@ public class RoleEntity extends BaseEntity {
 
     }
 
-    public UserRoleEnum getRole() {
-        return role;
+    public UserRoleEnum getName() {
+        return name;
     }
 
-    public RoleEntity setRole(UserRoleEnum role) {
-        this.role = role;
+    public RoleEntity setName(UserRoleEnum name) {
+        this.name = name;
         return this;
     }
 

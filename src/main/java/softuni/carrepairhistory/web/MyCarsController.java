@@ -34,7 +34,7 @@ public class MyCarsController {
     }
 
     @GetMapping("/users/all/cars")
-    public String getHome(Model model, Principal principal) {
+    public String getAllUserCars(Model model, Principal principal) {
 
         UserEntity user = userService.loggedUser(principal.getName());
 

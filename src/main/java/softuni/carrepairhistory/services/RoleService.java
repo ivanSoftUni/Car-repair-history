@@ -18,13 +18,13 @@ public class RoleService {
 
     public void initAdminRole() {
         RoleEntity roleEntity = new RoleEntity();
-        roleEntity.setRole(UserRoleEnum.ADMIN);
+        roleEntity.setName(UserRoleEnum.ADMIN);
 
         this.roleRepository.save(roleEntity);
     }
 
     public void initUserRole() {
-        RoleEntity roleEntity = new RoleEntity().setRole(UserRoleEnum.USER);
+        RoleEntity roleEntity = new RoleEntity().setName(UserRoleEnum.USER);
 
         this.roleRepository.save(roleEntity);
     }

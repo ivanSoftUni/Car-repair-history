@@ -7,6 +7,6 @@ import softuni.carrepairhistory.models.enums.UserRoleEnum;
 
 @Repository
 public interface RoleRepository extends JpaRepository<RoleEntity, Long> {
-    RoleEntity findByRole(UserRoleEnum name);
+    RoleEntity findByName(UserRoleEnum name);
 
 }

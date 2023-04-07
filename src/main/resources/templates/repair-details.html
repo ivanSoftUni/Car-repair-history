@@ -33,11 +33,11 @@
                     <h4 class="card-text text-dark fw-bold" th:text="|Коментар: |"></h4>
                     <h5 class="card-subtitle mb-2" th:text="${repair.getComment().toString()}"></h5>
 
-                    <div class="col-md-4 text-center">
-                        <div class="card details-card-image">
-                            <img src="/images/car.jpg" class="card-img-top text-center" alt="error">
-                        </div>
-                    </div>
+<!--                    <div class="col-md-4 text-center">-->
+<!--                        <div class="card details-card-image">-->
+<!--                            <img src="/images/car.jpg" class="card-img-top text-center" alt="error">-->
+<!--                        </div>-->
+<!--                    </div>-->
                     <br>
                     <div class="buttons">
                         <a th:href="@{/remove/{id}(id = ${repair.getId()})}"

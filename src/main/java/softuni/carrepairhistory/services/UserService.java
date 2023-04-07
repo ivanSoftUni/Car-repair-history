@@ -19,7 +19,6 @@ import softuni.carrepairhistory.repositories.UserRepository;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @Service
 public class UserService {
@@ -49,7 +48,7 @@ public class UserService {
         if (userRepository.count() == 0 && roleRepository.count() == 0) {
             this.roleService.initAdminRole();
             this.roleService.initUserRole();
-            RoleEntity adminRole = this.roleRepository.findByRole(UserRoleEnum.ADMIN);
+            RoleEntity adminRole = this.roleRepository.findByName(UserRoleEnum.ADMIN);
             createAdmin(List.of(adminRole));
         }
 
@@ -79,7 +78,7 @@ public class UserService {
         if (byUsername.isPresent() || byEmail.isPresent()) {
             return false;
         }
-        RoleEntity userRole = this.roleRepository.findByRole(UserRoleEnum.USER);
+        RoleEntity userRole = this.roleRepository.findByName(UserRoleEnum.USER);
 
         UserEntity newUser = new UserEntity();
         newUser.setUsername(userRegistrationDto.getUsername());
@@ -115,19 +114,23 @@ public class UserService {
         UserEntity user = this.userRepository.findById(id)
                 .orElseThrow(() -> new ObjectNotFoundException("User with ID " + id + " not found", id));
 
-        RoleEntity userRole = this.roleRepository.findByRole(UserRoleEnum.ADMIN);
+        RoleEntity adminRole = this.roleRepository.findByName(UserRoleEnum.ADMIN);
 
         List<RoleEntity> userRoles = user.getUserRoles();
 
-        RoleEntity roleEntity = userRoles.stream().filter(u -> u.getRole().equals(userRole.getRole())).findFirst().orElse(null);
-
         if (id != 1) {
-            if (roleEntity != null) {
-                userRoles.remove(userRole);
+            if (existAdminRoleInUser(userRoles, adminRole)) {
+                userRoles.remove(adminRole);
             } else {
-                userRoles.add(userRole);
+                userRoles.add(adminRole);
             }
         }
+
         this.userRepository.save(user);
+    }
+
+    public boolean existAdminRoleInUser(List<RoleEntity> roles, RoleEntity adminRole) {
+
+        return roles.stream().anyMatch(u -> u.getName().equals(adminRole.getName()));
     }
 }

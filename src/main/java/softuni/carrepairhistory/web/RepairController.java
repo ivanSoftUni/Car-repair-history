@@ -84,7 +84,7 @@ public class RepairController {
     }
 
     @GetMapping("/repair/details")
-    public String getDetails(Model model, Principal authenticatedPrincipal) {
+    public String getRepairDetails(Model model, Principal authenticatedPrincipal) {
 
         UserEntity user = userRepository.findByUsername(authenticatedPrincipal.getName())
                 .orElseThrow(() -> new UsernameNotFoundException("User with username: " + authenticatedPrincipal.getName() + " not found."));
