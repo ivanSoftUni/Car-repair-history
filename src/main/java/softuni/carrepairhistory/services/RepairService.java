@@ -11,7 +11,6 @@ import softuni.carrepairhistory.repositories.CarRepository;
 import softuni.carrepairhistory.repositories.RepairRepository;
 import softuni.carrepairhistory.repositories.VehiclesRepairsShopRepository;
 
-import java.math.BigDecimal;
 import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
@@ -79,6 +78,7 @@ public class RepairService {
     public void removeRepair(Long id) throws Exception {
 
         Repair repair = this.repairRepository.findById(id).orElseThrow(Exception::new);
+
         if (repair != null) {
             this.repairRepository.deleteById(id);
         }

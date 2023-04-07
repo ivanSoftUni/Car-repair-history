@@ -35,7 +35,6 @@ public class VehicleShopService {
         vehiclesRepairsShop.setAddress(addVehicleShop.getAddress());
         vehiclesRepairsShop.setPhoneNumber(addVehicleShop.getPhoneNumber());
         vehiclesRepairsShop.setUser(userService.loggedUser(principal.getName()));
-        vehiclesRepairsShop.setCars(new ArrayList<>());
 
         this.vehiclesRepairsShopRepository.save(vehiclesRepairsShop);
 

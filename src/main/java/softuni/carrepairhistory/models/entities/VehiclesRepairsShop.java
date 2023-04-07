@@ -20,8 +20,6 @@ public class VehiclesRepairsShop extends BaseEntity {
     @Column(name = "phone_number")
     private String phoneNumber;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    private List<Car> cars = new ArrayList<>();
     @ManyToOne
     private UserEntity user;
 
@@ -52,14 +50,6 @@ public class VehiclesRepairsShop extends BaseEntity {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-    }
-
-    public List<Car> getCars() {
-        return cars;
-    }
-
-    public void setCars(List<Car> cars) {
-        this.cars = cars;
     }
 
     public String getAddress() {

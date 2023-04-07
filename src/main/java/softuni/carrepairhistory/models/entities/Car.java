@@ -34,8 +34,8 @@ public class Car extends BaseEntity {
 
     @ManyToOne
     private UserEntity userEntity;
-    @OneToMany(fetch = FetchType.EAGER)
-    private List<Repair> repairList = new ArrayList<>();
+//    @OneToMany(fetch = FetchType.EAGER)
+//    private List<Repair> repairList = new ArrayList<>();
 
     public Car() {
 
@@ -45,13 +45,13 @@ public class Car extends BaseEntity {
         return engine;
     }
 
-    public List<Repair> getRepairList() {
-        return repairList;
-    }
-
-    public void setRepairList(List<Repair> repairList) {
-        this.repairList = repairList;
-    }
+//    public List<Repair> getRepairList() {
+//        return repairList;
+//    }
+//
+//    public void setRepairList(List<Repair> repairList) {
+//        this.repairList = repairList;
+//    }
 
     public void setEngine(String engine) {
         this.engine = engine;

@@ -56,7 +56,7 @@ public class CarServiceTest {
 
     @Test
     void testRegisterCarWithExistingCar() {
-        String registerNumber = "1234";
+        String registerNumber = "CA1234TT";
         when(createCarDto.getFuel()).thenReturn("GASOLINE");
         when(createCarDto.getRegisterNumber()).thenReturn(registerNumber);
         when(carRepository.findByRegisterNumber(registerNumber)).thenReturn(Optional.of(car));

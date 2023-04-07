@@ -72,9 +72,6 @@ public class UserService {
             return false;
         }
 
-//        Optional<UserEntity> byUsername = this.userRepository.findByUsername(userRegistrationDto.getUsername());
-        Optional<UserEntity> byEmail = this.userRepository.findByEmail(userRegistrationDto.getEmail());
-
         if (existUserByUsername(userRegistrationDto.getUsername()) ||
                 existUserByEmail(userRegistrationDto.getEmail())) {
 

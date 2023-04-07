@@ -17,11 +17,10 @@ import softuni.carrepairhistory.models.enums.UserRoleEnum;
 import softuni.carrepairhistory.repositories.RoleRepository;
 import softuni.carrepairhistory.repositories.UserRepository;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
 
@@ -65,7 +64,7 @@ public class UserServiceTest {
         boolean result = userService.toRegister(userRegistrationDto);
 
         // Assert
-        Assertions.assertTrue(result);
+        assertTrue(result);
         verify(userRepository, times(1)).save(Mockito.any(UserEntity.class));
     }
 
@@ -116,47 +115,35 @@ public class UserServiceTest {
         verify(modelMapper).map(user2, UserStatusDto.class);
     }
 
-//    @Test
-//    public void testChangeAdminsRole() {
-//        Long userId = 1L;
-//        UserEntity user = new UserEntity();
-//        user.setId(userId);
-//        RoleEntity adminRole = new RoleEntity();
-//        adminRole.setName(UserRoleEnum.ADMIN);
-//        List<RoleEntity> userRoles = new ArrayList<>();
-//        userRoles.add(adminRole);
-//        user.setUserRoles(userRoles);
-//        when(userRepository.findById(userId)).thenReturn(Optional.of(user));
-//        when(roleRepository.findByRole(UserRoleEnum.ADMIN)).thenReturn(adminRole);
-//
-//        // Test changing admin role for a non-admin user
-//        userId = 2L;
-//        user = new UserEntity();
-//        user.setId(userId);
-//        userRoles = new ArrayList<>();
-//        userRoles.add(new RoleEntity());
-//        user.setUserRoles(userRoles);
-//        when(userRepository.findById(userId)).thenReturn(Optional.of(user));
-//        userService.changeAdminsRole(userId);
-//        Assertions.assertFalse(user.getUserRoles().contains(adminRole));
-//        verify(userRepository).save(user);
-//
-////        // Test changing admin role for an admin user
-//        userId = 1L;
-//        user = new UserEntity();
-//        user.setId(userId);
-//        userRoles = new ArrayList<>();
-//        userRoles.add(adminRole);
-//        user.setUserRoles(userRoles);
-//        when(userRepository.findById(userId)).thenReturn(Optional.of(user));
-//        userService.changeAdminsRole(userId);
-//        Assertions.assertTrue(user.getUserRoles().contains(adminRole));
-//
-//
-//        // Test changing admin role for the user with ID 1 (should not change)
-//        when(userRepository.findById(userId)).thenReturn(Optional.of(user));
-//        userService.changeAdminsRole(userId);
-//        Assertions.assertTrue(user.getUserRoles().contains(adminRole));
-//
-//    }
+    @Test
+    public void testChangeAdminsRole() {
+        // Arrange
+        Long userId = 1L;
+        UserEntity user = new UserEntity();
+        user.setId(userId);
+        user.setUserRoles(Collections.singletonList(new RoleEntity(UserRoleEnum.ADMIN)));
+        RoleEntity adminRole = new RoleEntity(UserRoleEnum.ADMIN);
+
+        when(userRepository.findById(userId)).thenReturn(Optional.of(user));
+        when(roleRepository.findByName(UserRoleEnum.ADMIN)).thenReturn(adminRole);
+
+        // Act
+        userService.changeAdminsRole(userId);
+
+        // Assert
+        verify(userRepository).save(user);
+    }
+
+    @Test
+    public void testExistAdminRoleInUser() {
+        // Arrange
+        List<RoleEntity> roles = Collections.singletonList(new RoleEntity().setName(UserRoleEnum.ADMIN));
+        RoleEntity adminRole = new RoleEntity().setName(UserRoleEnum.ADMIN);
+
+        // Act
+        boolean result = userService.existAdminRoleInUser(roles, adminRole);
+
+        // Assert
+        assertTrue(result);
+    }
 }
