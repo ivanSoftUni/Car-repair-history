@@ -20,9 +20,9 @@
                     <input type="text" class="form-control"
                            id="brand" name="brand"
                            th:field="*{brand}"
-                           th:errorclass="is-invalid"
-                           required />
-                    <small class="invalid-feedback text-danger">Моля въведете коректна марка</small>
+                           th:errorclass="is-invalid"/>
+                    <small th:if="${#fields.hasErrors('brand')}" class="invalid-feedback text-danger">Моля въведете
+                        коректна марка</small>
                 </div>
 
                 <div class="col-md-6 mb-3">
@@ -30,9 +30,9 @@
                     <input type="text" class="form-control"
                            id="model" name="model"
                            th:field="*{model}"
-                           th:errorclass="is-invalid"
-                           required/>
-                    <small class="invalid-feedback text-danger">Моля въведете коректен модел</small>
+                           th:errorclass="is-invalid"/>
+                    <small th:if="${#fields.hasErrors('model')}" class="invalid-feedback text-danger">Моля въведете
+                        коректен модел</small>
                 </div>
 
                 <div class="col-md-6 mb-3">
@@ -41,18 +41,18 @@
                            name="year"
                            placeholder="Година на производство"
                            th:field="*{madeYear}"
-                           th:errorclass="is-invalid"
-                           required />
-                    <small class="invalid-feedback text-danger">Моля въведете коректна година</small>
+                           th:errorclass="is-invalid"/>
+                    <small th:if="${#fields.hasErrors('madeYear')}" class="invalid-feedback text-danger">Моля въведете
+                        коректна година</small>
                 </div>
 
                 <div class="col-md-6 mb-3">
                     <label for="horsePower" class="h4 mb-2">Конски сили</label>
                     <input type="number" class="form-control" id="horsePower" name="horsePower"
                            th:field="*{horsePower}"
-                           th:errorclass="is-invalid"
-                           required/>
-                    <small class="invalid-feedback text-danger">Моля въведете коректни конски сили</small>
+                           th:errorclass="is-invalid"/>
+                    <small th:if="${#fields.hasErrors('horsePower')}" class="invalid-feedback text-danger">Моля въведете
+                        коректни конски сили</small>
                 </div>
 
                 <div class="col-md-6 mb-3">
@@ -61,15 +61,16 @@
                            placeholder="Въведете кубатура на двигателя"
                            th:field="*{engine}"
                            th:errorclass="is-invalid"/>
-                    <small class="invalid-feedback text-danger">Моля въведете коректна кубатура на двигателя</small>
+                    <small th:if="${#fields.hasErrors('engine')}" class="invalid-feedback text-danger">Кубатурата трябва
+                        да е в следния формат "2,5" или "2500"</small>
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="registerNumber" class="h4 mb-2">Регистрационен номер</label>
                     <input type="text" class="form-control" id="registerNumber" name="registerNumber"
                            th:field="*{registerNumber}"
-                           th:errorclass="is-invalid"
-                           required/>
-                    <small class="invalid-feedback text-danger">Моля въведете коректен регистрационен номер</small>
+                           th:errorclass="is-invalid"/>
+                    <small th:if="${#fields.hasErrors('registerNumber')}" class="invalid-feedback text-danger">Моля
+                        въведете коректен регистрационен номер</small>
                 </div>
 
                 <div class="col-md-6 mb-3">
@@ -82,7 +83,8 @@
                         <option value="LPG">Газ</option>
                         <option value="METHANE">Метан</option>
                     </select>
-                    <small class="invalid-feedback text-danger">Fuel error message</small>
+                    <small th:if="${#fields.hasErrors('fuel')}" class="invalid-feedback text-danger">Fuel error
+                        message</small>
                 </div>
 
                 <div class="button-holder d-flex justify-content-center">

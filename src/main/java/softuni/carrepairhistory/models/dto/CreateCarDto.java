@@ -10,6 +10,7 @@ public class CreateCarDto {
     private String brand;
 
     @NotEmpty
+    @Size(min = 2)
     private String model;
 
     @NotNull
@@ -22,6 +23,7 @@ public class CreateCarDto {
     private int horsePower;
 
     @NotEmpty
+    @Size(min = 3, max = 4)
     private String engine;
 
     @NotEmpty
