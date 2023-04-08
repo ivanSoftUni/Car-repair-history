@@ -7,6 +7,7 @@ import softuni.carrepairhistory.models.dto.RepairDetailDto;
 import softuni.carrepairhistory.models.entities.Car;
 import softuni.carrepairhistory.models.entities.Repair;
 import softuni.carrepairhistory.models.entities.VehiclesRepairsShop;
+import softuni.carrepairhistory.models.exception.ObjectNotFoundException;
 import softuni.carrepairhistory.repositories.CarRepository;
 import softuni.carrepairhistory.repositories.RepairRepository;
 import softuni.carrepairhistory.repositories.VehiclesRepairsShopRepository;
@@ -84,9 +85,19 @@ public class RepairService {
         }
     }
 
+    public List<RepairDetailDto> getAllRepairs() {
+
+        return this.repairRepository.findAll().stream().map(this::mapToRepairDetail).toList();
+    }
+
     public List<Repair> getAllRepairsByCarId(Long carId) {
 
         return this.repairRepository.findAllByCarId(carId);
+    }
+
+    public RepairDetailDto getRepairDetail(Long id) {
+        return repairRepository.findById(id).map(this::mapToRepairDetail)
+                .orElseThrow(() -> new ObjectNotFoundException(id, "Ремонт"));
     }
 
 }
