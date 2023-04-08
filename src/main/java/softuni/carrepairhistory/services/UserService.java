@@ -49,15 +49,15 @@ public class UserService {
             this.roleService.initAdminRole();
             this.roleService.initUserRole();
             RoleEntity adminRole = this.roleRepository.findByName(UserRoleEnum.ADMIN);
-            createAdmin(List.of(adminRole));
+            createAdmin(adminRole);
         }
 
     }
 
 
-    private void createAdmin(List<RoleEntity> roles) {
+    void createAdmin(RoleEntity role) {
         UserEntity admin = new UserEntity();
-        admin.setUserRoles(roles);
+        admin.setUserRoles(List.of(role));
         admin.setUsername("admin");
         admin.setEmail("admin@car.bg");
         admin.setPassword(passwordEncoder.encode(defaultPassword));

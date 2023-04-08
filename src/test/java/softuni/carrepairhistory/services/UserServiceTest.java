@@ -1,6 +1,5 @@
 package softuni.carrepairhistory.services;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -28,6 +27,8 @@ import static org.mockito.Mockito.*;
 public class UserServiceTest {
     @Mock
     private UserRepository userRepository;
+    @Mock
+    private RoleService roleService;
 
     @Mock
     private RoleRepository roleRepository;
@@ -41,7 +42,27 @@ public class UserServiceTest {
     private UserService userService;
 
     @Test
-    void testRegisterUser() {
+    public void init_shouldInitializeData() {
+        // Setup
+        when(userRepository.count()).thenReturn(0L);
+        when(roleRepository.count()).thenReturn(0L);
+        RoleEntity adminRole = new RoleEntity();
+        adminRole.setName(UserRoleEnum.ADMIN);
+        when(roleRepository.findByName(UserRoleEnum.ADMIN)).thenReturn(adminRole);
+
+        // Execute
+        userService.init();
+
+        // Verify
+        verify(roleService, times(1)).initAdminRole();
+        verify(roleService, times(1)).initUserRole();
+        verify(roleRepository, times(1)).findByName(UserRoleEnum.ADMIN);
+//        verify(userService, times(1)).createAdmin(adminRole);
+    }
+
+
+    @Test
+    void testRegisterUser_success() {
         // Arrange
         UserRegistrationDto userRegistrationDto = new UserRegistrationDto();
         userRegistrationDto.setUsername("testuser");
