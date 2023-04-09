@@ -33,7 +33,7 @@ public class SecurityConfig {
                 requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll().
                 requestMatchers("/", "/users/login", "/users/register", "/users/login-error").permitAll().
                 requestMatchers("/car/add", "/vehicle-shop/add", "/repair/add", "/repair/details", "/users/all/cars").hasRole(UserRoleEnum.USER.name()).
-                requestMatchers("/admin/users").hasRole(UserRoleEnum.ADMIN.name()).
+                requestMatchers("/admin/users", "/api/repair/*").hasRole(UserRoleEnum.ADMIN.name()).
                 anyRequest().
                 authenticated().
                 and().
